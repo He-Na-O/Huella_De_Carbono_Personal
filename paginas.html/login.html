@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - Latido Verde</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f9f5;
+            color: #003d2d;
+        }
+        
+        header {
+            background-color: #006644;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: #008856;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 12px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .formulario {
+            background-color: #ffffff;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .formulario h2 {
+            color: #006644;
+            text-align: center;
+        }
+        
+        .formulario label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        
+        .formulario input[type="text"],
+        .formulario input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .formulario input[type="submit"] {
+            width: 100%;
+            background-color: #006644;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .formulario input[type="submit"]:hover {
+            background-color: #004d33;
+        }
+        
+        footer {
+            background-color: #004d33;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>LATIDO VERDE</h1>
+        <p>Late por la tierra. Siente el latido verde.</p>
+    </header>
+
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="mision_vision.html">Misión y Visión</a>
+        <a href="valores.html">Valores</a>
+        <a href="politica_calidad.html">Política de Calidad</a>
+        <a href="resenas.html">Reseñas</a>
+    </nav>
+
+    <div class="formulario">
+        <h2>Iniciar Sesión</h2>
+        <form action="#" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+
+            <input type="submit" value="Entrar">
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
+    </footer>
+</body>
+
+</html>

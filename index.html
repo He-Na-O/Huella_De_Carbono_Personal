@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latido Verde</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2e9;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: #006644;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        
+        .titulo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .titulo img {
+            height: 60px;
+        }
+        
+        .titulo-texto h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .titulo-texto p {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .busqueda {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .busqueda input {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .busqueda button {
+            background-color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        
+        .login {
+            background-color: #e0f2e9;
+            text-align: right;
+            padding: 5px 20px;
+        }
+        
+        .login a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #004d33;
+        }
+        
+        nav {
+            background-color: #008856;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 12px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .contenido {
+            flex: 1;
+            display: flex;
+        }
+        
+        .redes {
+            background-color: #006644;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+            gap: 20px;
+            width: 80px;
+        }
+        
+        .redes a img {
+            width: 45px;
+            height: 45px;
+        }
+        
+        .imagen-central {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .imagen-central img {
+            max-width: 70%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .carousel {
+            max-width: 80%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        .carousel-container {
+            display: flex;
+            width: 400%;
+            animation: slide 16s infinite;
+        }
+        
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        
+        @keyframes slide {
+            0% {
+                transform: translateX(0%);
+            }
+            25% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-200%);
+            }
+            75% {
+                transform: translateX(-300%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+        
+        footer {
+            background-color: #004d33;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        footer div {
+            margin: 5px 0;
+        }
+        
+        footer .contacto span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="titulo">
+            <img src="739fb183-7a89-4c32-93d8-7693e13ef5a6.png" alt="Logo Latido Verde">
+            <div class="titulo-texto">
+                <h2>LATIDO VERDE</h2>
+                <p>Late por la tierra. Siente el latido verde</p>
+            </div>
+        </div>
+        <div class="busqueda">
+            <input type="text" placeholder="Buscar">
+            <button>🔍</button>
+        </div>
+    </header>
+
+    <div class="login">
+        <a href="/paginas.html/login.html">Iniciar Sesión</a>
+    </div>
+
+    <nav>
+        <a href="/paginas.html/mision_vision.html">Misión y Visión</a>
+        <a href="/paginas.html/valores.html">Valores</a>
+        <a href="/paginas.html/politica_calidad.html">Política de Calidad</a>
+        <a href="/paginas.html/resenas.html">Reseñas</a>
+    </nav>
+
+    <div class="contenido">
+        <div class="redes">
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="X">
+            </a>
+            <a href="https://www.youtube.com" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+            </a>
+        </div>
+        <div class="imagen-central">
+            <img src="paisaje_latido_verde.png" alt="Imagen principal">
+
+            <div class="carousel">
+                <div class="carousel-container">
+                    <img src="img/imagen1.jpg" alt="Imagen 1">
+                    <img src="img/imagen2.jpg" alt="Imagen 2">
+                    <img src="img/imagen3.jpg" alt="Imagen 3">
+                    <img src="img/imagen4.jpg" alt="Imagen 4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contacto">
+            <p><span>CONTÁCTANOS</span> (+57) 301 2345678</p>
+        </div>
+        <div>
+            <p>Cra. 50 #35-20, Medellín, Colombia</p>
+            <p>Calle 45 #18-12, Bogotá, Colombia</p>
+        </div>
+        <div>
+            <p>latido.verde.net@gmail.com</p>
+        </div>
+    </footer>
+</body>
+
+</html>
