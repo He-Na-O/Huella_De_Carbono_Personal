@@ -8,15 +8,15 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f9f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e0f2e9, #d0ede0);
             color: #003d2d;
         }
         
         header {
             background-color: #006644;
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
         }
         
@@ -35,25 +35,42 @@
         }
         
         .contenido {
-            padding: 30px;
-            max-inline-size: 800px;
+            padding: 40px 30px;
+            max-inline-size: 850px;
             margin: 0 auto;
+            background-color: #ffffffc9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
         
         .contenido h2 {
             color: #006644;
+            margin-block-end: 20px;
         }
         
-        ul {
-            list-style-type: square;
-            padding-inline-start: 20px;
+        .valores-lista li {
+            margin-block-end: 15px;
+            line-height: 1.6;
+        }
+        
+        .valor-titulo {
+            font-weight: bold;
+            color: #004d33;
+        }
+        
+        .extra {
+            margin-block-start: 30px;
+            background-color: #e8f6ef;
+            padding: 20px;
+            border-inline-start: 4px solid #006644;
+            border-radius: 6px;
         }
         
         footer {
             background-color: #004d33;
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 18px;
             margin-block-start: 40px;
         }
     </style>
@@ -74,13 +91,18 @@
 
     <div class="contenido">
         <h2>Valores de Latido Verde</h2>
-        <ul>
-            <li><strong>Respeto por la naturaleza:</strong> Valoramos cada forma de vida y promovemos su preservación.</li>
-            <li><strong>Compromiso:</strong> Nos dedicamos con pasión a la sostenibilidad ambiental.</li>
-            <li><strong>Educación:</strong> Fomentamos la conciencia ecológica a través de la enseñanza.</li>
-            <li><strong>Solidaridad:</strong> Trabajamos en conjunto con comunidades para lograr un impacto real.</li>
-            <li><strong>Transparencia:</strong> Actuamos con honestidad en todos nuestros procesos.</li>
+        <ul class="valores-lista">
+            <li><span class="valor-titulo">Respeto por la naturaleza:</span> Valoramos cada forma de vida y promovemos su preservación como base del equilibrio ecológico.</li>
+            <li><span class="valor-titulo">Compromiso:</span> Nos dedicamos con pasión a fomentar proyectos sostenibles que generen impacto positivo.</li>
+            <li><span class="valor-titulo">Educación:</span> Creemos que el conocimiento es la semilla del cambio. Promovemos el aprendizaje ambiental desde edades tempranas.</li>
+            <li><span class="valor-titulo">Solidaridad:</span> Juntos llegamos más lejos. Cooperamos con comunidades para lograr transformaciones significativas.</li>
+            <li><span class="valor-titulo">Transparencia:</span> Mantenemos procesos abiertos y honestos para garantizar la confianza de nuestros aliados.</li>
         </ul>
+
+        <div class="extra">
+            <h3>¿Por qué nuestros valores importan?</h3>
+            <p>Cada valor de Latido Verde refleja nuestro compromiso con una sociedad consciente. Nos inspiran a actuar con coherencia y propósito, y son la guía que nos orienta en cada decisión ecológica, educativa y social.</p>
+        </div>
     </div>
 
     <footer>

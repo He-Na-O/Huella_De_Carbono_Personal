@@ -4,24 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Latido Verde</title>
+    <title>Registro - Latido Verde</title>
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #d4f5e3, #e0f2e9);
+            font-family: Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
             color: #003d2d;
         }
         
         header {
-            background-color: #006644;
+            background-color: rgba(0, 102, 68, 0.9);
             color: white;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
         }
         
         nav {
-            background-color: #008856;
+            background-color: rgba(0, 136, 86, 0.9);
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -35,33 +36,32 @@
         }
         
         .formulario {
-            background-color: #ffffffd9;
-            max-inline-size: 420px;
-            margin: 60px auto;
-            padding: 35px;
+            background-color: rgba(255, 255, 255, 0.95);
+            max-inline-size: 450px;
+            margin: 50px auto;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         .formulario h2 {
             color: #006644;
             text-align: center;
-            margin-block-end: 25px;
         }
         
         .formulario label {
             display: block;
-            margin-block-end: 5px;
+            margin: 15px 0 5px;
             font-weight: bold;
         }
         
         .formulario input[type="text"],
+        .formulario input[type="email"],
         .formulario input[type="password"] {
             inline-size: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-block-end: 15px;
         }
         
         .formulario input[type="submit"] {
@@ -69,33 +69,31 @@
             background-color: #006644;
             color: white;
             padding: 12px;
+            margin-block-start: 20px;
             border: none;
             border-radius: 5px;
-            font-size: 1rem;
             cursor: pointer;
+            font-size: 16px;
         }
         
         .formulario input[type="submit"]:hover {
             background-color: #004d33;
         }
         
-        .formulario .link-registro {
-            display: block;
-            margin-block-start: 15px;
-            text-align: center;
-        }
-        
-        .formulario .link-registro a {
-            color: #008856;
-            text-decoration: none;
+        .beneficios {
+            margin-block-start: 20px;
+            background-color: rgba(224, 242, 233, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
         }
         
         footer {
-            background-color: #004d33;
+            background-color: rgba(0, 77, 51, 0.9);
             color: white;
             text-align: center;
-            padding: 18px;
-            margin-block-start: 50px;
+            padding: 15px;
+            margin-block-start: 40px;
         }
     </style>
 </head>
@@ -108,28 +106,38 @@
 
     <nav>
         <a href="../index.html">Inicio</a>
-        <a href="registro.html">Registrarse</a>
+        <a href="login.html">Iniciar Sesión</a>
         <a href="mision_vision.html">Misión y Visión</a>
         <a href="valores.html">Valores</a>
-        <a href="politica_calidad.html">Política de Calidad</a>
-        <a href="resenas.html">Reseñas</a>
     </nav>
 
     <div class="formulario">
-        <h2>Iniciar Sesión</h2>
+        <h2>Registro</h2>
         <form action="#" method="post">
-            <label for="usuario">Usuario:</label>
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="usuario">Nombre de usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
 
             <label for="contrasena">Contraseña:</label>
             <input type="password" id="contrasena" name="contrasena" required>
 
-            <input type="submit" value="Entrar">
-
-            <div class="link-registro">
-                <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
-            </div>
+            <input type="submit" value="Registrarse">
         </form>
+
+        <div class="beneficios">
+            <p><strong>Beneficios de registrarse:</strong></p>
+            <ul>
+                <li>Calcula tu huella de carbono personal.</li>
+                <li>Accede a desafíos ecológicos y recompensas.</li>
+                <li>Participa en eventos comunitarios verdes.</li>
+                <li>Recibe tips para reducir tu impacto ambiental.</li>
+            </ul>
+        </div>
     </div>
 
     <footer>

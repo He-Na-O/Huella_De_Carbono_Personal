@@ -8,15 +8,15 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f9f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e0f2e9, #d0ede0);
             color: #003d2d;
         }
         
         header {
             background-color: #006644;
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
         }
         
@@ -35,21 +35,24 @@
         }
         
         .contenido {
-            padding: 30px;
-            max-width: 900px;
+            padding: 40px 30px;
+            max-inline-size: 900px;
             margin: 0 auto;
+            background-color: #ffffffcc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
         
         .contenido h2 {
             color: #006644;
-            margin-bottom: 20px;
+            margin-block-end: 25px;
         }
         
         .resena {
             background-color: #ffffff;
-            border-left: 5px solid #006644;
+            border-inline-start: 5px solid #006644;
             padding: 15px 20px;
-            margin-bottom: 20px;
+            margin-block-end: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
@@ -62,12 +65,49 @@
             color: #555;
         }
         
+        .formulario-resena {
+            margin-block-start: 40px;
+            padding: 20px;
+            background-color: #f4fdf8;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .formulario-resena label {
+            display: block;
+            margin-block-start: 15px;
+            font-weight: bold;
+        }
+        
+        .formulario-resena input,
+        .formulario-resena textarea {
+            inline-size: 100%;
+            padding: 10px;
+            margin-block-start: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .formulario-resena button {
+            margin-block-start: 20px;
+            background-color: #006644;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .formulario-resena button:hover {
+            background-color: #004d33;
+        }
+        
         footer {
             background-color: #004d33;
             color: white;
             text-align: center;
-            padding: 15px;
-            margin-top: 40px;
+            padding: 18px;
+            margin-block-start: 40px;
         }
     </style>
 </head>
@@ -103,6 +143,18 @@
             <p class="autor">- Sara Gómez</p>
         </div>
 
+        <div class="formulario-resena">
+            <h3>Comparte tu experiencia</h3>
+            <form action="#" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="comentario">Tu reseña:</label>
+                <textarea id="comentario" name="comentario" rows="4" required></textarea>
+
+                <button type="submit">Enviar Reseña</button>
+            </form>
+        </div>
     </div>
 
     <footer>

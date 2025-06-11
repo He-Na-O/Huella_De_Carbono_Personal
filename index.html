@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Latido Verde</title>
     <style>
         * {
@@ -14,14 +14,22 @@
         
         body {
             font-family: Arial, sans-serif;
-            background-color: #e0f2e9;
-            block-size: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1508780709619-79562169bc64');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #003d2d;
+        }
+        
+        .overlay {
+            background-color: rgba(240, 249, 245, 0.9);
+            min-block-size: 100vh;
             display: flex;
             flex-direction: column;
         }
         
         header {
-            background-color: #006644;
+            background-color: #006644cc;
             color: white;
             display: flex;
             align-items: center;
@@ -39,23 +47,8 @@
             block-size: 60px;
         }
         
-        .titulo-texto h2 {
-            margin: 0;
-            font-size: 24px;
-        }
-        
-        .titulo-texto p {
-            margin: 0;
-            font-size: 14px;
-        }
-        
-        .busqueda {
-            display: flex;
-            gap: 5px;
-        }
-        
         .busqueda input {
-            padding: 5px 10px;
+            padding: 6px 10px;
             border: none;
             border-radius: 4px;
         }
@@ -65,23 +58,24 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 6px 10px;
         }
         
-        .login {
-            background-color: #e0f2e9;
+        .login-registro {
+            background-color: #e0f2e9cc;
             text-align: end;
             padding: 5px 20px;
         }
         
-        .login a {
+        .login-registro a {
+            margin-inline-start: 10px;
             text-decoration: none;
             font-weight: bold;
             color: #004d33;
         }
         
         nav {
-            background-color: #008856;
+            background-color: #008856cc;
             display: flex;
             justify-content: center;
             gap: 40px;
@@ -101,7 +95,7 @@
         }
         
         .redes {
-            background-color: #006644;
+            background-color: #006644aa;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -135,6 +129,8 @@
             overflow: hidden;
             position: relative;
             margin-block-start: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .carousel-container {
@@ -166,8 +162,28 @@
             }
         }
         
+        .registro-beneficios {
+            margin-block-start: 30px;
+            background-color: #ffffffcc;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-inline-size: 90%;
+        }
+        
+        .registro-beneficios h3 {
+            color: #006644;
+            margin-block-end: 10px;
+        }
+        
+        .registro-beneficios ul {
+            list-style-type: disc;
+            margin-inline-start: 20px;
+            text-align: start;
+        }
+        
         footer {
-            background-color: #004d33;
+            background-color: #004d33cc;
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -178,80 +194,80 @@
         footer div {
             margin: 5px 0;
         }
-        
-        footer .contacto span {
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="titulo">
-            <img src="739fb183-7a89-4c32-93d8-7693e13ef5a6.png" alt="Logo Latido Verde">
-            <div class="titulo-texto">
-                <h2>LATIDO VERDE</h2>
-                <p>Late por la tierra. Siente el latido verde</p>
+    <div class="overlay">
+        <header>
+            <div class="titulo">
+                <img src="logo.png" alt="Logo Latido Verde" />
+                <div class="titulo-texto">
+                    <h2>LATIDO VERDE</h2>
+                    <p>Late por la tierra. Siente el latido verde</p>
+                </div>
             </div>
+            <div class="busqueda">
+                <input type="text" placeholder="Buscar..." />
+                <button>🔍</button>
+            </div>
+        </header>
+
+        <div class="login-registro">
+            <a href="/paginas.html/login.html">Iniciar Sesión</a>
+            <a href="/paginas.html/registro.html">Registrarse</a>
         </div>
-        <div class="busqueda">
-            <input type="text" placeholder="Buscar">
-            <button>🔍</button>
-        </div>
-    </header>
 
-    <div class="login">
-        <a href="/paginas.html/login.html">Iniciar Sesión</a>
-    </div>
+        <nav>
+            <a href="/paginas.html/mision_vision.html">Misión y Visión</a>
+            <a href="/paginas.html/valores.html">Valores</a>
+            <a href="/paginas.html/politica_calidad.html">Política de Calidad</a>
+            <a href="/paginas.html/resenas.html">Reseñas</a>
+        </nav>
 
-    <nav>
-        <a href="/paginas.html/mision_vision.html">Misión y Visión</a>
-        <a href="/paginas.html/valores.html">Valores</a>
-        <a href="/paginas.html/politica_calidad.html">Política de Calidad</a>
-        <a href="/paginas.html/resenas.html">Reseñas</a>
-    </nav>
+        <div class="contenido">
+            <div class="redes">
+                <a href="https://www.facebook.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook" /></a>
+                <a href="https://www.twitter.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="Twitter" /></a>
+                <a href="https://www.youtube.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" /></a>
+                <a href="https://www.instagram.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" /></a>
+            </div>
 
-    <div class="contenido">
-        <div class="redes">
-            <a href="https://www.facebook.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook">
-            </a>
-            <a href="https://www.twitter.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="X">
-            </a>
-            <a href="https://www.youtube.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-            </a>
-            <a href="https://www.instagram.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-            </a>
-        </div>
-        <div class="imagen-central">
-            <img src="paisaje_latido_verde.png" alt="Imagen principal">
+            <div class="imagen-central">
+                <img src="paisaje_latido_verde.png" alt="Imagen principal" />
+                <div class="carousel">
+                    <div class="carousel-container">
+                        <img src="img/imagen1.jpg" alt="Imagen 1" />
+                        <img src="img/imagen2.jpg" alt="Imagen 2" />
+                        <img src="img/imagen3.jpg" alt="Imagen 3" />
+                        <img src="img/imagen4.jpg" alt="Imagen 4" />
+                    </div>
+                </div>
 
-            <div class="carousel">
-                <div class="carousel-container">
-                    <img src="img/imagen1.jpg" alt="Imagen 1">
-                    <img src="img/imagen2.jpg" alt="Imagen 2">
-                    <img src="img/imagen3.jpg" alt="Imagen 3">
-                    <img src="img/imagen4.jpg" alt="Imagen 4">
+                <div class="registro-beneficios">
+                    <h3>¿Por qué registrarte?</h3>
+                    <ul>
+                        <li>Lleva un registro de tu huella de carbono personal.</li>
+                        <li>Accede a consejos personalizados para reducir tu impacto ambiental.</li>
+                        <li>Participa en retos ecológicos y gana recompensas.</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <div class="contacto">
-            <p><span>CONTÁCTANOS</span> (+57) 301 2345678</p>
-        </div>
-        <div>
-            <p>Cra. 50 #35-20, Medellín, Colombia</p>
-            <p>Calle 45 #18-12, Bogotá, Colombia</p>
-        </div>
-        <div>
-            <p>latido.verde.net@gmail.com</p>
-        </div>
-    </footer>
+        <footer>
+            <div class="contacto">
+                <p><strong>CONTÁCTANOS:</strong> (+57) 301 2345678</p>
+            </div>
+            <div>
+                <p>Cra. 50 #35-20, Medellín, Colombia</p>
+                <p>Calle 45 #18-12, Bogotá, Colombia</p>
+            </div>
+            <div>
+                <p>latido.verde.net@gmail.com</p>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>
