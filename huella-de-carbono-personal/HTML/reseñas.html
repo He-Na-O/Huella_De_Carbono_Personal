@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reseñas - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header consistente con la página principal */
+    header {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .logo-text {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 0;
+      color: #1b5e20;
+    }
+
+    .search-box {
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      border: 2px solid #388e3c;
+      padding: 8px 15px;
+      border-radius: 25px;
+      outline: none;
+      transition: all 0.3s ease;
+      width: 200px;
+    }
+
+    .search-box input:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-custom {
+      background: linear-gradient(135deg, #f5e8d0 0%, #e8d5b7 100%);
+      color: #1b5e20;
+      font-weight: bold;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      margin-left: 10px;
+    }
+
+    .btn-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: #1b5e20;
+    }
+
+    /* Navegación consistente */
+    nav {
+      background-color: #2e7d32;
+      padding: 15px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar-nav {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: bold;
+      margin: 0 15px;
+      padding: 8px 15px !important;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: #1b5e20;
+      transform: translateY(-2px);
+    }
+
+    /* Barra social mejorada */
+    .icon-bar {
+      position: fixed;
+      top: 120px;
+      left: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      padding: 15px 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .icon-bar a {
+      font-size: 1.2rem;
+      color: #fff;
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .icon-bar a:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.4);
+    }
+
+    /* Contenido principal */
+    main {
+      background: rgba(255,255,255,0.95);
+      margin: 30px auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+      max-width: 1200px;
+    }
+
+    .page-title {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 20px 20px 0 0;
+      text-align: center;
+      margin: 0;
+      font-weight: bold;
+      font-size: 2.5rem;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: #2e7d32;
+      font-style: italic;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+
+    /* Cards de reseñas mejoradas */
+    .review-card {
+      background: white;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+    }
+
+    .review-card .card-body {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .reviewer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 1.5rem;
+      color: #1b5e20;
+    }
+
+    .reviewer-name {
+      font-weight: bold;
+      color: #1b5e20;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .review-text {
+      color: #555;
+      line-height: 1.6;
+      font-size: 1rem;
+      flex-grow: 1;
+      margin-bottom: 15px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      margin-top: auto;
+    }
+
+    .star {
+      color: #ffd700;
+      font-size: 1.2rem;
+    }
+
+    .star.empty {
+      color: #ddd;
+    }
+
+    .rating-text {
+      margin-left: 10px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Sección de formulario para nueva reseña */
+    .add-review-section {
+      background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+      margin: 40px 0;
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px solid #a5d6a7;
+    }
+
+    .add-review-title {
+      color: #1b5e20;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .form-control {
+      border: 2px solid #c8e6c9;
+      border-radius: 10px;
+      padding: 12px 15px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+      color: white;
+    }
+
+    /* Footer consistente */
+    footer {
+      background: linear-gradient(135deg, #1b5e20 0%, #0d4d14 100%);
+      color: white;
+      margin-top: 40px;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+    }
+
+    .footer-content {
+      padding: 30px 0;
+    }
+
+    /* Responsividad */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .search-box input {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .logo-text {
+        font-size: 24px;
+      }
+
+      .icon-bar {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      main {
+        margin: 20px;
+        border-radius: 15px;
+      }
+
+      .review-card {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Animaciones */
+    .review-card {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .review-card:nth-child(1) { animation-delay: 0.1s; }
+    .review-card:nth-child(2) { animation-delay: 0.2s; }
+    .review-card:nth-child(3) { animation-delay: 0.3s; }
+    .review-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .main-content {
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Redes sociales -->
+<div class="icon-bar">
+  <a href="#" aria-label="X">
+    <i class="bi bi-twitter-x"></i>
+  </a>
+  <a href="#" aria-label="Facebook">
+    <i class="bi bi-facebook"></i>
+  </a>
+  <a href="#" aria-label="YouTube">
+    <i class="bi bi-youtube"></i>
+  </a>
+  <a href="#" aria-label="Instagram">
+    <i class="bi bi-instagram"></i>
+  </a>
+</div>
+
+<!-- Header -->
+<header class="d-flex justify-content-between align-items-center px-4 py-2" style="background-color: #a4d6a2;">
+    <div class="logo d-flex align-items-center">
+      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo Latido Verde" height="50" class="me-2">
+      <div>
+        <h1 class="h5 mb-0 fw-bold text-dark">LATIDO VERDE</h1>
+        <p class="mb-0 text-success" style="font-size: 0.8rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div>
+      <input type="search" placeholder="Buscar..." class="form-control" aria-label="Buscar" style="width: 200px;">
+      <div class="text-end mt-2">
+        <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-success btn-sm">Iniciar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+<!-- Navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">
+            <i class="bi bi-house-door"></i> Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="mision_vision.html">
+            <i class="bi bi-bullseye"></i> Misión y Visión
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="valores.html">
+            <i class="bi bi-flower1"></i> Valores
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="politica_de_calidad.html">
+            <i class="bi bi-shield-check"></i> Política
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="reseñas.html">
+            <i class="bi bi-chat-dots"></i> Reseñas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactanos.html">
+            <i class="bi bi-envelope-fill"></i> Contactanos
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Contenido principal -->
+<main class="main-content">
+  <h2 class="page-title">
+    <i class="bi bi-chat-heart me-3"></i>
+    Reseñas y Opiniones
+  </h2>
+  
+  <div class="container py-4">
+    <p class="page-subtitle">
+      "Descubre lo que nuestra comunidad dice sobre Latido Verde y cómo estamos impactando juntos el planeta"
+    </p>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card review-card">
+          <div class="card-body">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <h5 class="reviewer-name">María López</h5>
+            </div>
+            <p class="review-text">
+              "Gracias a Latido Verde aprendí cómo mis hábitos diarios afectan al planeta. La plataforma es muy intuitiva y educativa. ¡Excelente iniciativa para crear conciencia ambiental!"
+            </p>
+            <div class="rating">
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <span class="rating-text">Excelente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card review-card">
+          <div class="card-body">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <h5 class="reviewer-name">Carlos Gómez</h5>
+            </div>
+            <p class="review-text">
+              "Muy útil para reflexionar sobre nuestras decisiones diarias. Me encantó el enfoque juvenil y la forma creativa de abordar temas ambientales. Definitivamente recomendado."
+            </p>
+            <div class="rating">
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star star empty"></i>
+              <span class="rating-text">Muy bueno</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card review-card">
+          <div class="card-body">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <h5 class="reviewer-name">Valentina Ríos</h5>
+            </div>
+            <p class="review-text">
+              "Una forma muy bonita y educativa de aprender sobre la huella de carbono. Las herramientas son fáciles de usar y los consejos muy prácticos. ¡Gracias por el impacto positivo!"
+            </p>
+            <div class="rating">
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <span class="rating-text">Excelente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card review-card">
+          <div class="card-body">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <h5 class="reviewer-name">Samuel Torres</h5>
+            </div>
+            <p class="review-text">
+              "Fácil de usar y con mucha información valiosa. Me ayudó a cambiar mis hábitos diarios y a ser más consciente del impacto ambiental. La interfaz es muy amigable."
+            </p>
+            <div class="rating">
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star-fill star"></i>
+              <i class="bi bi-star star empty"></i>
+              <span class="rating-text">Muy bueno</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección para agregar reseña -->
+    <div class="add-review-section">
+      <h3 class="add-review-title">
+        <i class="bi bi-pencil-square me-2"></i>
+        ¡Comparte tu experiencia!
+      </h3>
+      <form>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="reviewerName" class="form-label fw-bold">Tu nombre</label>
+            <input type="text" class="form-control" id="reviewerName" placeholder="Escribe tu nombre">
+          </div>
+          <div class="col-md-6">
+            <label for="rating" class="form-label fw-bold">Calificación</label>
+            <select class="form-control" id="rating">
+              <option value="">Selecciona una calificación</option>
+              <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+              <option value="4">⭐⭐⭐⭐ Muy bueno</option>
+              <option value="3">⭐⭐⭐ Bueno</option>
+              <option value="2">⭐⭐ Regular</option>
+              <option value="1">⭐ Malo</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="reviewText" class="form-label fw-bold">Tu reseña</label>
+            <textarea class="form-control" id="reviewText" rows="4" placeholder="Cuéntanos tu experiencia con Latido Verde..."></textarea>
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-submit">
+              <i class="bi bi-send me-2"></i>
+              Enviar Reseña
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container footer-content text-center">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <h5><i class="bi bi-geo-alt me-2"></i>Nuestras Ubicaciones</h5>
+        <p class="mb-2">📍 Cra. 50 #35-20, Medellín, Colombia</p>
+        <p class="mb-2">📍 Calle 45 #18-12, Bogotá, Colombia</p>
+        <p class="mb-2">📧 contacto@latidoverde.com</p>
+        <p class="mb-2">📞 (+57) 301 2345678</p>
+      </div>
+    </div>
+    <hr style="border-color: #4caf50;">
+    <p class="mb-0">&copy; 2025 Latido Verde - Proyecto estudiantil comprometido con el futuro sostenible</p>
+    <p class="mb-0"><small>Desarrollado con 💚 para nuestro planeta</small></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Funcionalidad adicional para el formulario de reseñas
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const submitBtn = document.querySelector('.btn-submit');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Animación del botón
+            submitBtn.innerHTML = '<i class="spinner-border spinner-border-sm me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            // Simular envío
+            setTimeout(() => {
+                alert('¡Gracias por tu reseña! La revisaremos pronto.');
+                form.reset();
+                submitBtn.innerHTML = '<i class="bi bi-send me-2"></i>Enviar Reseña';
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    }
+    
+    // Efecto de hover en las cards
+    const cards = document.querySelectorAll('.review-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+</script>
+
+</body>
+</html>

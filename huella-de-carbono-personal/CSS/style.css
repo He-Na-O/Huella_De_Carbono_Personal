@@ -1,0 +1,245 @@
+    body {
+      background-color: #1b5e20;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    header p {
+      font-style: italic;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    .search-box {
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      border: 2px solid #388e3c;
+      padding: 8px 15px;
+      border-radius: 25px;
+      outline: none;
+      transition: all 0.3s ease;
+      width: 200px;
+    }
+
+    .search-box input:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+    }
+
+    nav {
+      background-color: #2e7d32;
+      padding: 15px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 0 20px;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #1b5e20;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .social-bar {
+      position: fixed;
+      top: 120px;
+      left: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+      background: rgba(255,255,255,0.9);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .social-bar a {
+      transition: transform 0.3s ease;
+    }
+
+    .social-bar a:hover {
+      transform: scale(1.1);
+    }
+
+    .social-bar a img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .carousel-inner {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+.carousel-inner img {
+  width: 100%;
+  height: 400px; /* Ajusta según necesidad */
+  object-fit: cover;
+  filter: brightness(0.5);
+  transition: filter 0.1s ease;
+}
+
+.carousel-item {
+      transition: transform 0.1s ease-in-out; /* Esto controla la velocidad de la transición entre imágenes */
+
+}
+
+.carousel-inner img:hover {
+  filter: brightness(1);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(46, 125, 50, 0.8);
+  border-radius: 50%;
+  padding: 15px;
+}
+
+@media (max-width: 768px) {
+  .carousel-inner img {
+    height: 250px;
+  }
+}
+
+
+    .contacto {
+      background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+      color: #1b5e20;
+      padding: 40px 15px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .contacto h3 {
+      font-weight: bold;
+      margin-bottom: 25px;
+      font-size: 24px;
+    }
+
+    .contacto .row {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contacto .col-md-4 {
+      padding: 15px;
+      font-weight: 500;
+    }
+
+    .footer {
+      background-color: #1b5e20;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 0;
+    }
+
+    /* Responsividad mejorada */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .search-box input {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      nav a {
+        margin: 5px 10px;
+        font-size: 14px;
+      }
+
+      .social-bar {
+        display: none;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      .carousel-inner img {
+        height: 250px;
+      }
+
+      .contacto h3 {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .contacto .col-md-4 {
+        margin-bottom: 15px;
+      }
+    }
+
+    /* Animaciones suaves */
+    * {
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    img{
+        width: 50;
+        height: 50;
+    }

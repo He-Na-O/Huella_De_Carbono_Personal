@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Calidad - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Header consistente con la página principal */
+    header {
+      background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
+      color: #1b5e20;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .search-container input {
+      border: 2px solid #388e3c;
+      border-radius: 25px;
+      padding: 8px 15px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-container input:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 8px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-custom {
+      background: linear-gradient(135deg, #f5e8d0 0%, #ede7d0 100%);
+      color: #1b5e20;
+      font-weight: bold;
+      border: 2px solid #1b5e20;
+      border-radius: 25px;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+    }
+
+    /* Navegación mejorada */
+    .navbar {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      padding: 15px 0;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+      padding: 10px 20px !important;
+      border-radius: 20px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .nav-link.active {
+      background-color: #4caf50;
+      font-weight: bold;
+    }
+
+    /* Barra de redes sociales mejorada */
+    .icon-bar {
+      position: fixed;
+      top: 25%;
+      left: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .icon-bar a {
+      font-size: 1.3rem;
+      color: white;
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      padding: 12px;
+      border-radius: 50%;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-bar a:hover {
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    }
+
+    /* Contenido principal */
+    .main-content {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      padding: 40px;
+      margin: 30px auto;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .page-title {
+      color: #1b5e20;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .page-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: rgba(200, 230, 201, 0.3);
+      border-radius: 15px;
+      border-left: 5px solid #4caf50;
+    }
+
+    /* Lista de políticas mejorada */
+    .policy-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .policy-item {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 255, 248, 0.9) 100%);
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 5px solid #4caf50;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .policy-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(46, 125, 50, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .policy-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 6px 25px rgba(76, 175, 80, 0.2);
+      border-left-color: #2e7d32;
+    }
+
+    .policy-item:hover::before {
+      opacity: 1;
+    }
+
+    .policy-icon {
+      color: #4caf50;
+      font-size: 1.5rem;
+      margin-right: 15px;
+      vertical-align: middle;
+    }
+
+    .policy-text {
+      font-size: 1.1rem;
+      color: #1b5e20;
+      font-weight: 500;
+      line-height: 1.6;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Sección adicional */
+    .commitment-section {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      margin-top: 40px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .commitment-section h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .commitment-section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, #1b5e20 0%, #0d3818 100%);
+      color: white;
+      padding: 30px 0;
+      margin-top: 50px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+
+    footer p {
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    /* Responsividad */
+    @media (max-width: 768px) {
+      .icon-bar {
+        display: none;
+      }
+
+      .main-content {
+        margin: 20px 15px;
+        padding: 25px;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .policy-item {
+        padding: 20px;
+        margin-bottom: 15px;
+      }
+
+      .policy-text {
+        font-size: 1rem;
+      }
+
+      .commitment-section {
+        padding: 30px 20px;
+      }
+
+      .nav-link {
+        padding: 8px 15px !important;
+        margin: 2px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .search-container input {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .policy-item:hover {
+        transform: none;
+      }
+    }
+
+    /* Animaciones */
+    .main-content {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    .policy-item {
+      animation: slideInLeft 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .policy-item:nth-child(1) { animation-delay: 0.1s; }
+    .policy-item:nth-child(2) { animation-delay: 0.2s; }
+    .policy-item:nth-child(3) { animation-delay: 0.3s; }
+    .policy-item:nth-child(4) { animation-delay: 0.4s; }
+    .policy-item:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Redes sociales -->
+<div class="icon-bar">
+  <a href="#" aria-label="X">
+    <i class="bi bi-twitter-x"></i>
+  </a>
+  <a href="#" aria-label="Facebook">
+    <i class="bi bi-facebook"></i>
+  </a>
+  <a href="#" aria-label="YouTube">
+    <i class="bi bi-youtube"></i>
+  </a>
+  <a href="#" aria-label="Instagram">
+    <i class="bi bi-instagram"></i>
+  </a>
+</div>
+
+<header class="d-flex justify-content-between align-items-center px-4 py-2" style="background-color: #a4d6a2;">
+    <div class="logo d-flex align-items-center">
+      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo Latido Verde" height="50" class="me-2">
+      <div>
+        <h1 class="h5 mb-0 fw-bold text-dark">LATIDO VERDE</h1>
+        <p class="mb-0 text-success" style="font-size: 0.8rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div>
+      <input type="search" placeholder="Buscar..." class="form-control" aria-label="Buscar" style="width: 200px;">
+      <div class="text-end mt-2">
+        <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-success btn-sm">Iniciar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+<!-- Navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">
+            <i class="bi bi-house-door"></i> Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="mision_vision.html">
+            <i class="bi bi-bullseye"></i> Misión y Visión
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="valores.html">
+            <i class="bi bi-flower1"></i> Valores
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="politica_de_calidad.html">
+            <i class="bi bi-shield-check"></i> Política
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="reseñas.html">
+            <i class="bi bi-chat-dots"></i> Reseñas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contactanos.html">
+            <i class="bi bi-envelope-fill"></i> Contactanos
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Contenido -->
+<main class="container">
+  <div class="main-content">
+    <h1 class="page-title">
+      <i class="bi bi-shield-check text-success me-3"></i>
+      Política de Calidad
+    </h1>
+
+    <p class="lead">
+      <i class="bi bi-leaf me-2"></i>
+      En Latido Verde, nos comprometemos con una gestión ambiental responsable basada en los principios de la sostenibilidad, la mejora continua y la conciencia ecológica.
+    </p>
+
+    <ul class="policy-list">
+      <li class="policy-item">
+        <i class="bi bi-check-circle-fill policy-icon"></i>
+        <p class="policy-text">
+          <strong>Transparencia Informativa:</strong> Garantizar información clara, veraz y científica sobre la huella de carbono, proporcionando datos precisos y actualizados para la toma de decisiones informadas.
+        </p>
+      </li>
+      
+      <li class="policy-item">
+        <i class="bi bi-people-fill policy-icon"></i>
+        <p class="policy-text">
+          <strong>Participación Activa:</strong> Promover la participación activa de estudiantes, familias e instituciones en prácticas ecológicas, fomentando una cultura de responsabilidad ambiental compartida.
+        </p>
+      </li>
+      
+      <li class="policy-item">
+        <i class="bi bi-graph-up policy-icon"></i>
+        <p class="policy-text">
+          <strong>Medición de Impacto:</strong> Medir el impacto ambiental personal con herramientas accesibles y educativas, facilitando el seguimiento y mejora continua de las prácticas sostenibles.
+        </p>
+      </li>
+      
+      <li class="policy-item">
+        <i class="bi bi-mortarboard-fill policy-icon"></i>
+        <p class="policy-text">
+          <strong>Alianzas Educativas:</strong> Establecer alianzas estratégicas con entidades educativas para promover el aprendizaje ambiental y amplificar nuestro impacto positivo en la comunidad.
+        </p>
+      </li>
+      
+      <li class="policy-item">
+        <i class="bi bi-arrow-clockwise policy-icon"></i>
+        <p class="policy-text">
+          <strong>Mejora Continua:</strong> Evaluar regularmente nuestros contenidos y servicios para mantener la calidad, actualización y relevancia de nuestras herramientas y recursos educativos.
+        </p>
+      </li>
+    </ul>
+
+    <div class="commitment-section">
+      <h3>
+        <i class="bi bi-heart-pulse me-3"></i>
+        Nuestro Compromiso
+      </h3>
+      <p>
+        Latido Verde se compromete a ser un agente de cambio positivo en la educación ambiental, 
+        proporcionando herramientas innovadoras y accesibles que empoderen a las personas para 
+        tomar decisiones más sostenibles y conscientes con el medio ambiente.
+      </p>
+      <p class="mb-0">
+        <strong>Juntos construimos un futuro más verde, una acción a la vez.</strong>
+      </p>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p><i class="bi bi-geo-alt-fill me-2"></i>Cra. 45 #125–75, Medellín, Colombia</p>
+      </div>
+      <div class="col-md-6">
+        <p><i class="bi bi-geo-alt-fill me-2"></i>Cl. 60 #40–25, Envigado, Colombia</p>
+      </div>
+    </div>
+    <hr style="border-color: rgba(255,255,255,0.3);">
+    <p class="mb-1">
+      <i class="bi bi-heart-fill text-success me-2"></i>
+      <strong>Latido Verde</strong> - Proyecto estudiantil
+    </p>
+    <p class="mb-0">
+      <small>&copy; 2025 - Todos los derechos reservados | Comprometidos con un futuro sostenible</small>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
