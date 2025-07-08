@@ -2,112 +2,207 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reseñas - Latido Verde</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
+         :root {
+            --verde-claro: #e9f8f1;
+            --verde-oscuro: #05472a;
+            --modo-oscuro-fondo: #121212;
+            --modo-oscuro-texto: #e0e0e0;
+            --blanco: #ffffff;
+        }
+        
         body {
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f9f5;
-            color: #003d2d;
+            background-color: var(--verde-claro);
+            color: var(--verde-oscuro);
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
         
-        header {
-            background-color: #006644;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        body.dark {
+            background-color: var(--modo-oscuro-fondo);
+            color: var(--modo-oscuro-texto);
         }
         
-        nav {
-            background-color: #008856;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 12px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .contenido {
-            padding: 30px;
-            max-width: 900px;
+        .contenedor {
+            max-inline-size: 950px;
             margin: 0 auto;
+            padding: 40px 25px;
+            animation: fadeIn 1s ease;
         }
         
-        .contenido h2 {
-            color: #006644;
-            margin-bottom: 20px;
-        }
-        
-        .resena {
-            background-color: #ffffff;
-            border-left: 5px solid #006644;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .resena p {
-            margin: 5px 0;
-        }
-        
-        .autor {
-            font-style: italic;
-            color: #555;
-        }
-        
-        footer {
-            background-color: #004d33;
-            color: white;
+        h1 {
             text-align: center;
-            padding: 15px;
-            margin-top: 40px;
+            font-size: 2.5rem;
+            margin-block-end: 30px;
+        }
+        
+        h1::after {
+            content: '';
+            inline-size: 60px;
+            block-size: 4px;
+            background-color: #2fa877;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 3px;
+        }
+        
+        .reseña {
+            background-color: var(--blanco);
+            padding: 20px;
+            margin-block-end: 25px;
+            border-inline-start: 5px solid #2fa877;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .reseña {
+            background-color: #1f1f1f;
+        }
+        
+        .reseña strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-block-end: 5px;
+            color: #2fa877;
+        }
+        
+        .modo-oscuro-toggle {
+            display: block;
+            margin: 0 auto 30px;
+            border: 2px solid #2fa877;
+            background-color: transparent;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: inherit;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .modo-oscuro-toggle:hover {
+            background-color: #2fa877;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .volver {
+            display: block;
+            margin: 50px auto 0;
+            text-align: center;
+            background-color: #05472a;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            inline-size: fit-content;
+            transition: background-color 0.3s ease, transform 0.2s;
+            font-size: 1rem;
+        }
+        
+        .volver:hover {
+            background-color: #0d6c41;
+            transform: scale(1.05);
+        }
+        
+        .formulario-reseña {
+            margin-block-start: 40px;
+            background-color: var(--blanco);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .formulario-reseña {
+            background-color: #1f1f1f;
+        }
+        
+        .formulario-reseña input,
+        .formulario-reseña textarea {
+            inline-size: 100%;
+            padding: 10px;
+            margin-block-end: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        
+        .formulario-reseña button {
+            background-color: #2fa877;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+        
+        .formulario-reseña button:hover {
+            background-color: #1e8a60;
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>LATIDO VERDE</h1>
-        <p>Late por la tierra. Siente el latido verde.</p>
-    </header>
+    <div class="contenedor">
+        <h1>Reseñas de Usuarios</h1>
 
-    <nav>
-        <a href="../index.html">Inicio</a>
-        <a href="mision_vision.html">Misión y Visión</a>
-        <a href="valores.html">Valores</a>
-        <a href="politica_calidad.html">Política de Calidad</a>
-    </nav>
+        <button class="modo-oscuro-toggle" onclick="document.body.classList.toggle('dark')">🌙 Cambiar tema</button>
 
-    <div class="contenido">
-        <h2>Reseñas de Participantes</h2>
-
-        <div class="resena">
-            <p>"Una experiencia transformadora. Me hizo ver el valor real de la naturaleza y el poder de la comunidad."</p>
-            <p class="autor">- Camila Rojas</p>
+        <!-- Reseñas existentes -->
+        <div id="listaResenas">
+            <div class="reseña"><strong>Camila Torres – 16 años</strong> Antes no sabía qué era la huella de carbono. Ahora camino más y consumo menos carne. 🌱</div>
+            <div class="reseña"><strong>Juan David Gómez – Docente</strong> Uso esta web con mis alumnos. ¡Excelente recurso educativo!</div>
+            <div class="reseña"><strong>Sofía López – Estudiante</strong> Me encantó la calculadora y las recomendaciones personalizadas.</div>
+            <div class="reseña"><strong>Pedro Márquez – Agricultor</strong> Aprendí a reducir el uso de fertilizantes contaminantes. Muy útil.</div>
+            <div class="reseña"><strong>Ana Lucía – Madre de familia</strong> Ahora reciclamos y tomamos duchas más cortas gracias a esta página. 💧</div>
         </div>
 
-        <div class="resena">
-            <p>"Excelente organización, comprometida y con proyectos muy bien pensados. ¡Volvería sin dudarlo!"</p>
-            <p class="autor">- Luis Eduardo Mejía</p>
+        <!-- Formulario para agregar reseña -->
+        <div class="formulario-reseña">
+            <h2>Escribe tu propia reseña</h2>
+            <input type="text" id="nombreUsuario" placeholder="Tu nombre o apodo">
+            <textarea id="comentarioUsuario" rows="4" placeholder="¿Qué opinas sobre Latido Verde?"></textarea>
+            <button onclick="agregarResena()">Enviar Reseña</button>
         </div>
 
-        <div class="resena">
-            <p>"Gracias a Latido Verde aprendí a reciclar de verdad y a motivar a mi barrio a unirse a la causa."</p>
-            <p class="autor">- Sara Gómez</p>
-        </div>
-
+        <a href="../index.html" class="volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
-    </footer>
+    <script>
+        function agregarResena() {
+            const nombre = document.getElementById("nombreUsuario").value.trim();
+            const comentario = document.getElementById("comentarioUsuario").value.trim();
+
+            if (nombre && comentario) {
+                const nuevaResena = document.createElement("div");
+                nuevaResena.className = "reseña";
+                nuevaResena.innerHTML = `<strong>${nombre}</strong> ${comentario}`;
+                document.getElementById("listaResenas").prepend(nuevaResena);
+
+                document.getElementById("nombreUsuario").value = "";
+                document.getElementById("comentarioUsuario").value = "";
+            } else {
+                alert("Por favor, completa ambos campos.");
+            }
+        }
+    </script>
 </body>
 
 </html>

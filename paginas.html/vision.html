@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Valores - Latido Verde</title>
+    <title>Visión - Latido Verde</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
          :root {
@@ -52,23 +52,19 @@
             border-radius: 3px;
         }
         
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        li {
+        p {
             font-size: 1.2rem;
+            line-height: 1.8;
+            margin-block-end: 25px;
             background-color: var(--blanco);
-            margin-block-end: 20px;
-            padding: 18px;
+            padding: 20px;
             border-inline-start: 6px solid #2fa877;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             transition: background-color 0.3s ease;
         }
         
-        body.dark li {
+        body.dark p {
             background-color: #1f1f1f;
         }
         
@@ -125,20 +121,21 @@
 
 <body>
     <div class="contenedor">
-        <h1>Nuestros Valores</h1>
+        <h1>Nuestra Visión</h1>
 
         <button class="modo-oscuro-toggle" onclick="document.body.classList.toggle('dark')">
       🌙 Cambiar tema
     </button>
 
-        <ul>
-            <li><strong>Responsabilidad Ambiental:</strong> Tomamos conciencia de nuestras acciones y su impacto en el planeta.</li>
-            <li><strong>Educación:</strong> Promovemos el conocimiento como base para transformar hábitos insostenibles.</li>
-            <li><strong>Transparencia:</strong> Compartimos información clara y veraz sobre la huella de carbono personal.</li>
-            <li><strong>Innovación:</strong> Utilizamos tecnología para facilitar el acceso al cambio ecológico.</li>
-            <li><strong>Compromiso Social:</strong> Involucramos a comunidades y escuelas en la acción climática.</li>
-            <li><strong>Empatía:</strong> Entendemos que cada proceso de cambio es diferente y acompañamos sin juzgar.</li>
-        </ul>
+        <p>
+            En <strong>Latido Verde</strong>, imaginamos un futuro en el que cada persona actúe con conciencia ambiental, convirtiéndose en agente de cambio en su comunidad. Visualizamos una sociedad donde el respeto por la Tierra esté presente en cada
+            decisión cotidiana, y donde medir y reducir la huella de carbono sea parte natural de la vida diaria.
+        </p>
+
+        <p>
+            Nuestra visión es llegar a miles de hogares, inspirando a las nuevas generaciones a cuidar el planeta mediante herramientas digitales, retos ecológicos y educación ambiental accesible. Queremos construir una red global de ciudadanos comprometidos con
+            el equilibrio ecológico y la sostenibilidad.
+        </p>
 
         <a href="../index.html" class="volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
     </div>
