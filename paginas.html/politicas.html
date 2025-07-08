@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Valores - Latido Verde</title>
+    <title>Políticas de Calidad - Latido Verde</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
          :root {
@@ -39,7 +39,6 @@
             text-align: center;
             font-size: 2.5rem;
             margin-block-end: 30px;
-            position: relative;
         }
         
         h1::after {
@@ -52,24 +51,22 @@
             border-radius: 3px;
         }
         
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        li {
-            font-size: 1.2rem;
+        .politica {
             background-color: var(--blanco);
-            margin-block-end: 20px;
-            padding: 18px;
-            border-inline-start: 6px solid #2fa877;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: background-color 0.3s ease;
+            padding: 20px;
+            margin-block-end: 25px;
+            border-inline-start: 5px solid #2fa877;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        body.dark li {
+        body.dark .politica {
             background-color: #1f1f1f;
+        }
+        
+        .politica h2 {
+            margin-block-start: 0;
+            color: #2fa877;
         }
         
         .modo-oscuro-toggle {
@@ -125,20 +122,31 @@
 
 <body>
     <div class="contenedor">
-        <h1>Nuestros Valores</h1>
+        <h1>Políticas de Calidad</h1>
 
         <button class="modo-oscuro-toggle" onclick="document.body.classList.toggle('dark')">
       🌙 Cambiar tema
     </button>
 
-        <ul>
-            <li><strong>Responsabilidad Ambiental:</strong> Tomamos conciencia de nuestras acciones y su impacto en el planeta.</li>
-            <li><strong>Educación:</strong> Promovemos el conocimiento como base para transformar hábitos insostenibles.</li>
-            <li><strong>Transparencia:</strong> Compartimos información clara y veraz sobre la huella de carbono personal.</li>
-            <li><strong>Innovación:</strong> Utilizamos tecnología para facilitar el acceso al cambio ecológico.</li>
-            <li><strong>Compromiso Social:</strong> Involucramos a comunidades y escuelas en la acción climática.</li>
-            <li><strong>Empatía:</strong> Entendemos que cada proceso de cambio es diferente y acompañamos sin juzgar.</li>
-        </ul>
+        <div class="politica">
+            <h2>Compromiso con la sostenibilidad</h2>
+            <p>Nos esforzamos por mantener todos los contenidos alineados con los principios del desarrollo sostenible y la acción climática.</p>
+        </div>
+
+        <div class="politica">
+            <h2>Accesibilidad educativa</h2>
+            <p>El proyecto está diseñado para ser comprensible y accesible para todas las edades, fomentando el aprendizaje ambiental desde la escuela.</p>
+        </div>
+
+        <div class="politica">
+            <h2>Actualización continua</h2>
+            <p>Mejoramos regularmente nuestras herramientas para garantizar una experiencia moderna, informativa y actualizada según los avances ambientales.</p>
+        </div>
+
+        <div class="politica">
+            <h2>Privacidad y confianza</h2>
+            <p>Los datos proporcionados por los usuarios no se almacenan ni comparten. Todo cálculo es anónimo y educativo.</p>
+        </div>
 
         <a href="../index.html" class="volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
     </div>

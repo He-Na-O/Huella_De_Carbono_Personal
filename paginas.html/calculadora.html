@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Huella de Carbono</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         :root {
+            --verde-claro: #e9f8f1;
+            --verde-oscuro: #05472a;
+            --modo-oscuro-fondo: #121212;
+            --modo-oscuro-texto: #e0e0e0;
+            --blanco: #ffffff;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--verde-claro);
+            color: var(--verde-oscuro);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark {
+            background: var(--modo-oscuro-fondo);
+            color: var(--modo-oscuro-texto);
+        }
+        
+        .contenedor {
+            max-inline-size: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-block-end: 20px;
+        }
+        
+        form {
+            background: var(--blanco);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease;
+        }
+        
+        body.dark form {
+            background: #1f1f1f;
+        }
+        
+        .formulario-grupo {
+            margin-block-end: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-block-end: 6px;
+            font-weight: bold;
+        }
+        
+        .info-btn {
+            background-color: transparent;
+            border: none;
+            color: #207a51;
+            cursor: pointer;
+            font-size: 14px;
+            margin-inline-start: 10px;
+        }
+        
+        .info-box {
+            background-color: #f0fdf7;
+            padding: 10px;
+            margin-block-start: 5px;
+            border-inline-start: 4px solid #207a51;
+            border-radius: 6px;
+            display: none;
+            font-size: 14px;
+        }
+        
+        input[type="number"],
+        select {
+            inline-size: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            padding: 12px 20px;
+            background-color: #207a51;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #2fa877;
+            transform: scale(1.05);
+        }
+        
+        .resultado {
+            margin-block-start: 30px;
+            padding: 20px;
+            background-color: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark .resultado {
+            background-color: #1f1f1f;
+        }
+        
+        .volver {
+            display: block;
+            margin: 20px auto 0;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: #05472a;
+            padding: 10px 18px;
+            border-radius: 30px;
+            inline-size: fit-content;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .volver:hover {
+            background-color: #0d6c41;
+            transform: scale(1.05);
+        }
+        
+        .modo-oscuro-toggle {
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            border: 2px solid #207a51;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: transparent;
+            cursor: pointer;
+            color: inherit;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <h1>Calculadora de Huella de Carbono</h1>
+        <button class="modo-oscuro-toggle" id="modoOscuroBtn">🌙 Cambiar tema</button>
+        <form id="formularioCarbono">
+
+            <!-- Pregunta transporte -->
+            <div class="formulario-grupo">
+                <label for="vehiculo">¿Utilizas algún tipo de transporte?
+          <button type="button" class="info-btn" onclick="toggleInfo(this)">ℹ️</button>
+        </label>
+                <div class="info-box">Los medios de transporte como autos o motos emiten gases de efecto invernadero debido al combustible. Entre más usas un vehículo, más contribuyes al cambio climático.</div>
+                <select id="vehiculo">
+          <option value="0">No uso transporte</option>
+          <option value="0.21">Vehículo particular</option>
+          <option value="0.12">Moto</option>
+          <option value="0.05">Transporte público</option>
+          <option value="0.01">Bicicleta o caminata</option>
+        </select>
+            </div>
+
+            <div class="formulario-grupo">
+                <label for="km">¿Cuántos kilómetros recorres a la semana?
+          <button type="button" class="info-btn" onclick="toggleInfo(this)">ℹ️</button>
+        </label>
+                <div class="info-box">A mayor distancia recorrida en transporte motorizado, mayor será la emisión de dióxido de carbono (CO₂).</div>
+                <input type="number" id="km" placeholder="Ej: 30">
+            </div>
+
+            <!-- Pregunta electricidad -->
+            <div class="formulario-grupo">
+                <label for="electricidad">¿Cuántas horas usas electrodomésticos al día?
+          <button type="button" class="info-btn" onclick="toggleInfo(this)">ℹ️</button>
+        </label>
+                <div class="info-box">El uso excesivo de electrodomésticos aumenta el consumo eléctrico, lo que genera más CO₂ si la energía proviene de fuentes no renovables.</div>
+                <input type="number" id="electricidad" placeholder="Ej: 4">
+            </div>
+
+            <!-- Pregunta agua -->
+            <div class="formulario-grupo">
+                <label for="agua">¿Cuántos minutos usas la ducha diariamente?
+          <button type="button" class="info-btn" onclick="toggleInfo(this)">ℹ️</button>
+        </label>
+                <div class="info-box">El agua requiere energía para ser calentada, tratada y transportada. Reducir su uso también reduce tu huella.</div>
+                <input type="number" id="agua" placeholder="Ej: 10">
+            </div>
+
+            <!-- Pregunta residuos -->
+            <div class="formulario-grupo">
+                <label for="residuos">¿Cuántas bolsas de basura generas por semana?
+          <button type="button" class="info-btn" onclick="toggleInfo(this)">ℹ️</button>
+        </label>
+                <div class="info-box">La acumulación y procesamiento de residuos genera metano, un gas más potente que el CO₂. Reducir y reciclar ayuda mucho.</div>
+                <input type="number" id="residuos" placeholder="Ej: 3">
+            </div>
+
+            <!-- Pregunta carne -->
+            <div class="formulario-grupo">
+                <label for="carne">¿Cuántos días a la semana consumes carne?
+          <button type="button" class="info-btn" onclick="toggleInfo(this)">ℹ️</button>
+        </label>
+                <div class="info-box">La producción de carne, especialmente de vaca, emite gran cantidad de gases de efecto invernadero. Reducir su consumo es una buena práctica.</div>
+                <input type="number" id="carne" placeholder="Ej: 5">
+            </div>
+
+            <button type="submit">Calcular Huella</button>
+        </form>
+
+        <div class="resultado" id="resultado"></div>
+        <a href="../index.html" class="volver"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    </div>
+
+    <script>
+        function toggleInfo(btn) {
+            const box = btn.parentElement.nextElementSibling;
+            box.style.display = box.style.display === "block" ? "none" : "block";
+        }
+
+        document.getElementById("formularioCarbono").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const factorVehiculo = parseFloat(document.getElementById("vehiculo").value);
+            const km = parseFloat(document.getElementById("km").value) || 0;
+            const electricidad = parseFloat(document.getElementById("electricidad").value) || 0;
+            const agua = parseFloat(document.getElementById("agua").value) || 0;
+            const residuos = parseFloat(document.getElementById("residuos").value) || 0;
+            const carne = parseFloat(document.getElementById("carne").value) || 0;
+
+            const huella = (km * factorVehiculo) + (electricidad * 0.6 * 30) + (agua * 0.25 * 30) + (residuos * 2) + (carne * 3);
+
+            let mensaje = "";
+            if (huella < 150) {
+                mensaje = "Tu huella de carbono es baja. ¡Sigue así! 🌱\nConsejo: Sigue usando bici o caminando cuando puedas.";
+            } else if (huella < 300) {
+                mensaje = "Tu huella es moderada. Hay margen de mejora. 💡\nConsejo: Reduce el consumo de carne y mejora el reciclaje en casa.";
+            } else {
+                mensaje = "Tu huella es alta. ¡Toma acción ya! 🌍\nConsejo: Apaga aparatos que no uses y limita duchas largas.";
+            }
+
+            document.getElementById("resultado").innerHTML = `
+        <h2>Resultado:</h2>
+        <p><strong>Tu huella estimada es:</strong> ${huella.toFixed(2)} kg CO₂/mes</p>
+        <p>${mensaje.replace(/\n/g, '<br>')}</p>
+      `;
+        });
+
+        document.getElementById("modoOscuroBtn").addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+        });
+    </script>
+</body>
+
+</html>

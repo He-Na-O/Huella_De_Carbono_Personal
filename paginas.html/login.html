@@ -5,136 +5,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Latido Verde</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+         :root {
+            --verde-medio: #207a51;
+            --verde-claro: #d7f5e8;
+            --fondo-oscuro: #121212;
+            --texto-claro: #ffffff;
+        }
+        
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #d4f5e3, #e0f2e9);
-            color: #003d2d;
+            font-family: Arial, sans-serif;
+            background-color: var(--verde-claro);
+            color: var(--verde-medio);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark {
+            background-color: var(--fondo-oscuro);
+            color: var(--texto-claro);
         }
         
         header {
-            background-color: #006644;
+            background-color: var(--verde-medio);
             color: white;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
+            position: relative;
         }
         
-        nav {
-            background-color: #008856;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 12px;
-        }
-        
-        nav a {
+        .modo-oscuro-toggle {
+            position: absolute;
+            inset-block-start: 20px;
+            inset-inline-end: 20px;
+            background: none;
+            border: 2px solid white;
             color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .formulario {
-            background-color: #ffffffd9;
-            max-inline-size: 420px;
-            margin: 60px auto;
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .formulario h2 {
-            color: #006644;
-            text-align: center;
-            margin-block-end: 25px;
-        }
-        
-        .formulario label {
-            display: block;
-            margin-block-end: 5px;
-            font-weight: bold;
-        }
-        
-        .formulario input[type="text"],
-        .formulario input[type="password"] {
-            inline-size: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-block-end: 15px;
-        }
-        
-        .formulario input[type="submit"] {
-            inline-size: 100%;
-            background-color: #006644;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            border-radius: 20px;
+            padding: 6px 12px;
             cursor: pointer;
         }
         
-        .formulario input[type="submit"]:hover {
-            background-color: #004d33;
+        main {
+            max-inline-size: 500px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         
-        .formulario .link-registro {
-            display: block;
-            margin-block-start: 15px;
+        body.dark main {
+            background-color: #1f1f1f;
+        }
+        
+        h2 {
             text-align: center;
+            margin-block-end: 20px;
         }
         
-        .formulario .link-registro a {
-            color: #008856;
-            text-decoration: none;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         
-        footer {
-            background-color: #004d33;
+        label {
+            font-weight: bold;
+        }
+        
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            background-color: var(--verde-medio);
             color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #125c3d;
+        }
+        
+        .volver {
+            margin-block-start: 20px;
             text-align: center;
-            padding: 18px;
-            margin-block-start: 50px;
+        }
+        
+        .volver a {
+            color: var(--verde-medio);
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>LATIDO VERDE</h1>
-        <p>Late por la tierra. Siente el latido verde.</p>
+        <h1>Iniciar Sesión - Latido Verde</h1>
+        <button class="modo-oscuro-toggle" id="modoOscuroBtn">Modo Oscuro</button>
     </header>
 
-    <nav>
-        <a href="../index.html">Inicio</a>
-        <a href="registro.html">Registrarse</a>
-        <a href="mision_vision.html">Misión y Visión</a>
-        <a href="valores.html">Valores</a>
-        <a href="politica_calidad.html">Política de Calidad</a>
-        <a href="resenas.html">Reseñas</a>
-    </nav>
+    <main>
+        <h2>Accede a tu cuenta</h2>
+        <form>
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required>
 
-    <div class="formulario">
-        <h2>Iniciar Sesión</h2>
-        <form action="#" method="post">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
 
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-
-            <input type="submit" value="Entrar">
-
-            <div class="link-registro">
-                <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
-            </div>
+            <button type="submit">Iniciar sesión</button>
         </form>
-    </div>
 
-    <footer>
-        <p>&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
-    </footer>
+        <div class="volver">
+            <p><a href="../index.html">&larr; Volver al inicio</a></p>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('modoOscuroBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+        });
+    </script>
 </body>
 
 </html>
