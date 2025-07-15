@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latido Verde - Inicio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #006644;
+      --secondary-green: #008856;
+      --light-green: #a1d7a3;
+      --dark-green: #1b5e20;
+      --accent-green: #e0f2e9;
+      --text-dark: #004d33;
+      --shadow: 0 8px 32px rgba(0,0,0,0.3);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme="dark"] {
+      --primary-green: #2e7d32;
+      --secondary-green: #4caf50;
+      --light-green: #66bb6a;
+      --dark-green: #1b5e20;
+      --accent-green: #263238;
+      --text-dark: #e8f5e8;
+      --shadow: 0 8px 32px rgba(0,0,0,0.6);
+      --glass-bg: rgba(0, 0, 0, 0.3);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--accent-green) 0%, #c8e6c9 100%);
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+      min-height: 100vh;
+    }
+
+    [data-theme="dark"] body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+    }
+
+    /* Barra de redes sociales mejorada */
+    .social-bar {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0 15px 15px 0;
+      padding: 15px 10px;
+      gap: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .social-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--glass-bg);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+    }
+
+    .social-bar a:hover {
+      transform: scale(1.1);
+      background: var(--primary-green);
+      box-shadow: 0 4px 15px rgba(0, 102, 68, 0.4);
+    }
+
+    .social-bar img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+
+    /* Header mejorado */
+    header {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--glass-border);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand-text h1 {
+      font-weight: 800;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin: 0;
+    }
+
+    .brand-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Controles de header */
+    .header-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-container input {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      padding: 8px 40px 8px 15px;
+      border-radius: 25px;
+    }
+
+    .search-container input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Botón de modo oscuro */
+    .theme-toggle {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Navegación mejorada */
+    nav {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #2e7d32 100%);
+      padding: 15px 0;
+      box-shadow: inset 0 -2px 10px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Carrusel mejorado */
+    .carousel-container {
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .carousel-item img {
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .carousel-caption {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid var(--glass-border);
+      bottom: 20px;
+    }
+
+    .carousel-caption h5 {
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 60px;
+      height: 60px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .carousel-control-prev {
+      left: -80px;
+    }
+
+    .carousel-control-next {
+      right: -80px;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      background: var(--primary-green);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Indicadores del carrusel */
+    .carousel-indicators button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 2px solid var(--primary-green);
+      margin: 0 5px;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-indicators button.active {
+      background: var(--primary-green);
+      transform: scale(1.2);
+    }
+
+    /* Sección de contacto mejorada */
+    .contacto {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      margin: 40px 0;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contacto h3 {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .contact-item {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #0d4d20 100%);
+      color: white;
+      padding: 30px 0;
+      border-top: 3px solid var(--primary-green);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    }
+
+    footer hr {
+      border-color: var(--glass-border);
+      opacity: 0.3;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .social-bar {
+        display: none;
+      }
+      
+      .header-controls {
+        flex-direction: row;
+        gap: 15px;
+      }
+      
+      nav a {
+        margin: 0 10px;
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        display: none;
+      }
+      
+      .carousel-item img {
+        width: 100%;
+        height: 300px;
+      }
+    }
+
+    /* Efectos de partículas de fondo */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Partículas de fondo -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Barra de redes sociales -->
+  <div class="social-bar">
+    <a href="#" aria-label="X" title="Síguenos en X">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg);">
+    </a>
+    <a href="#" aria-label="Facebook" title="Síguenos en Facebook">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(220deg);">
+    </a>
+    <a href="#" aria-label="YouTube" title="Síguenos en YouTube">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(350deg);">
+    </a>
+    <a href="#" aria-label="Instagram" title="Síguenos en Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+        width="24" height="24">
+    </a>
+  </div>
+
+  <!-- Header mejorado -->
+  <header class="d-flex justify-content-between align-items-center px-4 py-3">
+    <div class="logo-container">
+      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+      <div class="brand-text">
+        <h1 class="h4 mb-0">LATIDO VERDE</h1>
+        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container">
+          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+          <button class="search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+      <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-light btn-sm px-3">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+      </a>
+    </div>
+  </header>
+
+  <!-- Navegación mejorada -->
+  <nav class="text-center py-2">
+    <a class="active" href="/index.html">
+      <i class="bi bi-house-fill"></i> Inicio
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+      <i class="bi bi-bullseye"></i> Misión y Visión
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/valores.html">
+      <i class="bi bi-flower1"></i> Valores
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+      <i class="bi bi-shield-check"></i> Política
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+      <i class="bi bi-chat-dots"></i> Reseñas
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/calculadora.html">
+      <i class="bi bi-calculator-fill"></i> Calculadora
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/contactanos.html">
+      <i class="bi bi-envelope-fill"></i> Contactanos
+    </a>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="container my-5">
+    <div class="carousel-container fade-in-up">
+      <div id="carouselLatido" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3050">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselLatido" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#carouselLatido" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carouselLatido" data-bs-slide-to="2"></button>
+          <button type="button" data-bs-target="#carouselLatido" data-bs-slide-to="3"></button>
+          <button type="button" data-bs-target="#carouselLatido" data-bs-slide-to="4"></button>
+          <button type="button" data-bs-target="#carouselLatido" data-bs-slide-to="5"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/huella-de-carbono-personal/IMG/carrusel1.jpg" class="d-block mx-auto" 
+                 style="width: 500px; height: 500px; object-fit: cover;" alt="reciclaje">
+            <div class="carousel-caption">
+              <h5><i class="bi bi-recycle me-2"></i>Transforma tu Huella en Esperanza</h5>
+              <p>Acciones sostenibles para un futuro verde</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/huella-de-carbono-personal/IMG/carrusel2.jpg" class="d-block mx-auto" 
+                 style="width: 500px; height: 500px; object-fit: cover;" alt="cuida la tierra">
+            <div class="carousel-caption">
+              <h5><i class="bi bi-globe me-2"></i>Protege la Tierra, Activa el Cambio</h5>
+              <p>Recicla, reutiliza y transforma con energía limpia</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/huella-de-carbono-personal/IMG/carrusel3.jpg" class="d-block mx-auto" 
+                 style="width: 500px; height: 500px; object-fit: cover;" alt="la tierra en nuestras manos">
+            <div class="carousel-caption">
+              <h5><i class="bi bi-people me-2"></i>Unidos por el Planeta</h5>
+              <p>Cada mano y cada árbol construyen el futuro</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/huella-de-carbono-personal/IMG/carrusel4.jpg" class="d-block mx-auto" 
+                 style="width: 500px; height: 500px; object-fit: cover;" alt="contaminacion">
+            <div class="carousel-caption">
+              <h5><i class="bi bi-sun me-2"></i>Del Desperdicio a la Vida</h5>
+              <p>La energía solar transforma lo imposible en esperanza</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/huella-de-carbono-personal/IMG/carrusel5.jpg" class="d-block mx-auto" 
+                 style="width: 500px; height: 500px; object-fit: cover;" alt="juntos cuidamos la tierra">
+            <div class="carousel-caption">
+              <h5><i class="bi bi-shield-check me-2"></i>Conservación Global</h5>
+              <p>Unidos para proteger nuestros recursos naturales</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/huella-de-carbono-personal/IMG/carrusel6.jpg" class="d-block mx-auto" 
+                 style="width: 500px; height: 500px; object-fit: cover;" alt="la tierra está en nuestras manos">
+            <div class="carousel-caption">
+              <h5><i class="bi bi-heart me-2"></i>Amor que Protege</h5>
+              <p>La Tierra florece con nuestras acciones conscientes</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselLatido" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselLatido" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sección de contacto mejorada -->
+  <section class="contacto container fade-in-up">
+    <h3><i class="bi bi-telephone me-2"></i>CONTÁCTANOS &nbsp;&nbsp; (+57) 301 2345678</h3>
+    <div class="row mt-4">
+      <div class="col-md-4 mb-3">
+        <div class="contact-item">
+          <i class="bi bi-geo-alt-fill text-success fs-2 mb-2"></i>
+          <h5>Medellín</h5>
+          <p>Cra. 50 #35-20, Medellín, Colombia</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="contact-item">
+          <i class="bi bi-geo-alt-fill text-success fs-2 mb-2"></i>
+          <h5>Bogotá</h5>
+          <p>Calle 45 #18-12, Bogotá, Colombia</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="contact-item">
+          <i class="bi bi-envelope-fill text-success fs-2 mb-2"></i>
+          <h5>Email</h5>
+          <p>latido.verde.net@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer mejorado -->
+  <footer class="text-center text-white py-4 fade-in-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-2 fs-5">&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
+          <p class="mb-3"><i class="bi bi-leaf me-2"></i>Comprometidos con un futuro sostenible</p>
+          <hr style="border-color: rgba(255,255,255,0.2); max-width: 300px; margin: 20px auto;">
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <span class="badge bg-success"><i class="bi bi-recycle me-1"></i>Eco-Friendly</span>
+            <span class="badge bg-success"><i class="bi bi-globe me-1"></i>Sostenible</span>
+            <span class="badge bg-success"><i class="bi bi-heart me-1"></i>Compromiso Verde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función para alternar tema
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'bi bi-moon-fill';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    // Cargar tema guardado
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+      }
+      
+      // Crear partículas de fondo
+      createParticles();
+      
+      // Añadir animaciones de entrada
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 200);
+        });
+      }, 100);
+    });
+
+    // Crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+    // Efectos de hover para las tarjetas de contacto
+    document.querySelectorAll('.contact-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px) scale(1.02)';
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Efecto parallax suave para el carrusel
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const carousel = document.getElementById('carouselLatido');
+      if (carousel) {
+        carousel.style.transform = 'translateY(' + scrolled * 0.1 + 'px)';
+      }
+    });
+  </script>
+</body>
+
+</html>
