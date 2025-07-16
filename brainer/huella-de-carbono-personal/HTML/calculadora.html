@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #006644;
+      --secondary-green: #008856;
+      --light-green: #a1d7a3;
+      --dark-green: #1b5e20;
+      --accent-green: #e0f2e9;
+      --text-dark: #004d33;
+      --shadow: 0 8px 32px rgba(0,0,0,0.3);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme="dark"] {
+      --primary-green: #2e7d32;
+      --secondary-green: #4caf50;
+      --light-green: #66bb6a;
+      --dark-green: #1b5e20;
+      --accent-green: #263238;
+      --text-dark: #e8f5e8;
+      --shadow: 0 8px 32px rgba(0,0,0,0.6);
+      --glass-bg: rgba(0, 0, 0, 0.3);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--accent-green) 0%, #c8e6c9 100%);
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+      min-height: 100vh;
+    }
+
+    [data-theme="dark"] body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+    }
+
+    /* Barra de redes sociales mejorada */
+    .social-bar {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0 15px 15px 0;
+      padding: 15px 10px;
+      gap: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .social-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--glass-bg);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+      color: var(--primary-green);
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .social-bar a:hover {
+      transform: scale(1.1);
+      background: var(--primary-green);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 102, 68, 0.4);
+    }
+    
+    .social-bar img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+    /* Header mejorado */
+    header {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--glass-border);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand-text h1 {
+      font-weight: 800;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin: 0;
+    }
+
+    .brand-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Controles de header */
+    .header-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-container input {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      padding: 8px 40px 8px 15px;
+      border-radius: 25px;
+    }
+
+    .search-container input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Botón de modo oscuro */
+    .theme-toggle {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Navegación mejorada */
+    nav {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #2e7d32 100%);
+      padding: 15px 0;
+      box-shadow: inset 0 -2px 10px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    nav a.active {
+      background: var(--primary-green);
+    }
+
+    /* Contenedor principal de la calculadora */
+    .calculator-container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      margin: 40px auto;
+      padding: 40px;
+      max-width: 900px;
+      box-shadow: var(--shadow);
+    }
+
+    .calculator-container h2 {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .form-label {
+      color: var(--text-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      color: var(--text-dark);
+      backdrop-filter: blur(5px);
+      border-radius: 15px;
+      padding: 12px 16px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(0, 102, 68, 0.1);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .btn-calculate {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 102, 68, 0.3);
+    }
+
+    .btn-calculate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 102, 68, 0.4);
+      background: linear-gradient(135deg, var(--secondary-green) 0%, var(--primary-green) 100%);
+    }
+
+    /* Resultado */
+    .result-container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--primary-green);
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .result-container h4 {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .result-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .impact-level {
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-weight: 600;
+      margin-top: 15px;
+      display: inline-block;
+    }
+
+    .impact-low {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .impact-medium {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeaa7;
+    }
+
+    .impact-high {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #0d4d20 100%);
+      color: white;
+      padding: 30px 0;
+      border-top: 3px solid var(--primary-green);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    }
+
+    footer hr {
+      border-color: var(--glass-border);
+      opacity: 0.3;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .social-bar {
+        display: none;
+      }
+      
+      .header-controls {
+        flex-direction: row;
+        gap: 15px;
+      }
+      
+      nav a {
+        margin: 0 10px;
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+      
+      .calculator-container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+
+    /* Efectos de partículas de fondo */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Tarjetas de información */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .info-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .info-card i {
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      margin-bottom: 15px;
+    }
+
+    .info-card h5 {
+      color: var(--primary-green);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      color: var(--text-dark);
+      font-size: 14px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Partículas de fondo -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Barra de redes sociales -->
+   <div class="social-bar">
+    <a href="https://www.x.com/VerdeLatid74290" aria-label="X" title="Síguenos en X">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg);">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577069371910" aria-label="Facebook" title="Síguenos en Facebook">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(220deg);">
+    </a>
+    <a href="https://www.youtube.com/@Latidoverde" aria-label="YouTube" title="Síguenos en YouTube">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(350deg);">
+    </a>
+    <a href="https://www.instagram.com/latido.verde_public/" aria-label="Instagram" title="Síguenos en Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+        width="24" height="24">
+    </a>
+  </div>
+  
+  <!-- Header mejorado -->
+  <header class="d-flex justify-content-between align-items-center px-4 py-3">
+    <div class="logo-container">
+      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+      <div class="brand-text">
+        <h1 class="h4 mb-0">LATIDO VERDE</h1>
+        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container">
+          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+          <button class="search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+      <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-light btn-sm px-3">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+      </a>
+    </div>
+  </header>
+
+  <!-- Navegación mejorada -->
+  <nav class="text-center py-2">
+    <a href="/index.html">
+      <i class="bi bi-house-fill"></i> Inicio
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+      <i class="bi bi-bullseye"></i> Misión y Visión
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/valores.html">
+      <i class="bi bi-flower1"></i> Valores
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+      <i class="bi bi-shield-check"></i> Política
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+      <i class="bi bi-chat-dots"></i> Reseñas
+    </a>
+    <a class="active" href="/huella-de-carbono-personal/HTML/calculadora.html">
+      <i class="bi bi-calculator-fill"></i> Calculadora
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/contactanos.html">
+      <i class="bi bi-envelope-fill"></i> Contactanos
+    </a>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <div class="calculator-container fade-in-up">
+      <h2><i class="bi bi-calculator me-2"></i>Calculadora de Huella de Carbono Personal</h2>
+      
+      <form id="carbonForm">
+        <div class="row mb-4">
+          <div class="col-md-6 mb-3">
+            <label for="electricidad" class="form-label">
+              <i class="bi bi-lightning-charge me-2"></i>Consumo mensual de electricidad (kWh):
+            </label>
+            <input type="number" class="form-control" id="electricidad" placeholder="Ej: 150" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="transporte" class="form-label">
+              <i class="bi bi-car-front me-2"></i>Kilómetros semanales en transporte:
+            </label>
+            <input type="number" class="form-control" id="transporte" placeholder="Ej: 100" required>
+          </div>
+        </div>
+        
+        <div class="row mb-4">
+          <div class="col-md-6 mb-3">
+            <label for="agua" class="form-label">
+              <i class="bi bi-droplet me-2"></i>Consumo mensual de agua (m³):
+            </label>
+            <input type="number" class="form-control" id="agua" placeholder="Ej: 15" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="residuos" class="form-label">
+              <i class="bi bi-trash me-2"></i>Cantidad de residuos semanales (kg):
+            </label>
+            <input type="number" class="form-control" id="residuos" placeholder="Ej: 10" required>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn-calculate">
+            <i class="bi bi-calculator me-2"></i>Calcular Huella de Carbono
+          </button>
+        </div>
+      </form>
+
+      <div class="result-container" id="resultado" style="display:none;">
+        <h4><i class="bi bi-graph-up me-2"></i>Tu huella de carbono estimada es:</h4>
+        <div class="result-value" id="valorHuella"></div>
+        <div class="impact-level" id="impactLevel"></div>
+        <div class="mt-3">
+          <small class="text-muted">
+            <i class="bi bi-info-circle me-1"></i>
+            Resultado basado en promedios y factores de emisión estándar
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas informativas -->
+    <div class="info-cards fade-in-up">
+      <div class="info-card">
+        <i class="bi bi-leaf"></i>
+        <h5>Reduce tu consumo</h5>
+        <p>Pequeños cambios en tus hábitos diarios pueden generar un gran impacto ambiental</p>
+      </div>
+      <div class="info-card">
+        <i class="bi bi-recycle"></i>
+        <h5>Recicla más</h5>
+        <p>Separar y reciclar correctamente tus residuos reduce significativamente tu huella</p>
+      </div>
+      <div class="info-card">
+        <i class="bi bi-bicycle"></i>
+        <h5>Transporte sostenible</h5>
+        <p>Usa transporte público, bicicleta o camina para reducir emisiones de CO₂</p>
+      </div>
+      <div class="info-card">
+        <i class="bi bi-lightbulb"></i>
+        <h5>Energía eficiente</h5>
+        <p>Utiliza bombillas LED y electrodomésticos eficientes para ahorrar energía</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer mejorado -->
+  <footer class="text-center text-white py-4 fade-in-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-2 fs-5">&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
+          <p class="mb-3"><i class="bi bi-leaf me-2"></i>Comprometidos con un futuro sostenible</p>
+          <hr style="border-color: rgba(255,255,255,0.2); max-width: 300px; margin: 20px auto;">
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <span class="badge bg-success"><i class="bi bi-recycle me-1"></i>Eco-Friendly</span>
+            <span class="badge bg-success"><i class="bi bi-globe me-1"></i>Sostenible</span>
+            <span class="badge bg-success"><i class="bi bi-heart me-1"></i>Compromiso Verde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función para alternar tema
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'bi bi-moon-fill';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Cargar tema guardado
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+      }
+      
+      // Crear partículas de fondo
+      createParticles();
+      
+      // Añadir animaciones de entrada
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 200);
+        });
+      }, 100);
+    });
+
+    // Crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Calculadora de huella de carbono mejorada
+    document.getElementById("carbonForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const electricidad = parseFloat(document.getElementById("electricidad").value) * 0.5;
+      const transporte = parseFloat(document.getElementById("transporte").value) * 0.21 * 4;
+      const agua = parseFloat(document.getElementById("agua").value) * 0.05;
+      const residuos = parseFloat(document.getElementById("residuos").value) * 0.1 * 4;
+
+      const total = electricidad + transporte + agua + residuos;
+      const totalRounded = total.toFixed(2);
+
+      // Mostrar resultado
+      document.getElementById("valorHuella").textContent = totalRounded + " kg CO₂ por mes";
+      
+      // Determinar nivel de impacto
+      const impactLevel = document.getElementById("impactLevel");
+      if (total < 100) {
+        impactLevel.textContent = "Impacto Bajo - ¡Excelente!";
+        impactLevel.className = "impact-level impact-low";
+      } else if (total < 200) {
+        impactLevel.textContent = "Impacto Medio - Puedes mejorar";
+        impactLevel.className = "impact-level impact-medium";
+      } else {
+        impactLevel.textContent = "Impacto Alto - Necesitas cambios";
+        impactLevel.className = "impact-level impact-high";
+      }
+
+      // Mostrar resultado con animación
+      const resultado = document.getElementById("resultado");
+      resultado.style.display = "block";
+      resultado.classList.add("pulse");
+      
+      // Remover animación después de 2 segundos
+      setTimeout(() => {
+        resultado.classList.remove("pulse");
+      }, 2000);
+    });
+
+    // Efectos de hover para las tarjetas de información
+    document.querySelectorAll('.info-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Efecto parallax suave
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const particles = document.getElementById('particles');
+      if (particles) {
+        particles.style.transform = 'translateY(' + scrolled * 0.1 + 'px)';
+      }
+    });
+  </script>
+</body>
+
+</html>
