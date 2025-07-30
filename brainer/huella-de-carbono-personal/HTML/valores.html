@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valores Corporativos - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #006644;
+      --secondary-green: #008856;
+      --light-green: #a1d7a3;
+      --dark-green: #1b5e20;
+      --accent-green: #e0f2e9;
+      --text-dark: #004d33;
+      --shadow: 0 8px 32px rgba(0,0,0,0.3);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme="dark"] {
+      --primary-green: #2e7d32;
+      --secondary-green: #4caf50;
+      --light-green: #66bb6a;
+      --dark-green: #1b5e20;
+      --accent-green: #263238;
+      --text-dark: #e8f5e8;
+      --shadow: 0 8px 32px rgba(0,0,0,0.6);
+      --glass-bg: rgba(0, 0, 0, 0.3);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--accent-green) 0%, #c8e6c9 100%);
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+      min-height: 100vh;
+    }
+
+    [data-theme="dark"] body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+    }
+
+    /* Barra de redes sociales mejorada */
+    .social-bar {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0 15px 15px 0;
+      padding: 15px 10px;
+      gap: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .social-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--glass-bg);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    .social-bar a:hover {
+      transform: scale(1.1);
+      background: var(--primary-green);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 102, 68, 0.4);
+    }
+    
+    .social-bar img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+    /* Header mejorado */
+    header {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--glass-border);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand-text h1 {
+      font-weight: 800;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin: 0;
+    }
+
+    .brand-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Controles de header */
+    .header-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-container input {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      padding: 8px 40px 8px 15px;
+      border-radius: 25px;
+    }
+
+    .search-container input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Botón de modo oscuro */
+    .theme-toggle {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Navegación mejorada */
+    nav {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #2e7d32 100%);
+      padding: 15px 0;
+      box-shadow: inset 0 -2px 10px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Estilos específicos para valores */
+    .page-title {
+      text-align: center;
+      margin: 40px 0 60px;
+      padding: 30px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .page-title h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .page-title p {
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      opacity: 0.8;
+    }
+
+    .valores-intro {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .valores-intro h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .valores-intro img {
+      animation: pulse 2s infinite;
+    }
+
+    .valores-intro p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .valor-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .valor-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+
+    .valor-card:hover::before {
+      opacity: 1;
+      transform: rotate(45deg) translateX(100%);
+    }
+
+    .valor-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .valor-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .valor-card:hover .valor-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .valor-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 15px;
+    }
+
+    .valor-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+      opacity: 0.9;
+    }
+
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #0d4d20 100%);
+      color: white;
+      padding: 30px 0;
+      border-top: 3px solid var(--primary-green);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    footer hr {
+      border-color: var(--glass-border);
+      opacity: 0.3;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .social-bar {
+        display: none;
+      }
+      
+      .header-controls {
+        flex-direction: row;
+        gap: 15px;
+      }
+      
+      nav a {
+        margin: 0 10px;
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+      
+      .page-title h1 {
+        font-size: 2rem;
+      }
+      
+      .valores-intro h2 {
+        font-size: 1.8rem;
+      }
+      
+      .valores-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* Efectos de partículas de fondo */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Partículas de fondo -->
+  <div class="bg-particles" id="particles"></div>
+
+    <!-- Barra de redes sociales -->
+   <div class="social-bar">
+    <a href="https://www.x.com/VerdeLatid74290" aria-label="X" title="Síguenos en X">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg);">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577069371910" aria-label="Facebook" title="Síguenos en Facebook">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(220deg);">
+    </a>
+    <a href="https://www.youtube.com/@Latidoverde" aria-label="YouTube" title="Síguenos en YouTube">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(350deg);">
+    </a>
+    <a href="https://www.instagram.com/latido.verde_public/" aria-label="Instagram" title="Síguenos en Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+        width="24" height="24">
+    </a>
+  </div>
+  <!-- Header mejorado -->
+  <header class="d-flex justify-content-between align-items-center px-4 py-3">
+    <div class="logo-container">
+      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+      <div class="brand-text">
+        <h1 class="h4 mb-0">LATIDO VERDE</h1>
+        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container">
+          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+          <button class="search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+      <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-light btn-sm px-3">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+      </a>
+    </div>
+  </header>
+
+  <!-- Navegación mejorada -->
+  <nav class="text-center py-2">
+    <a href="/index.html">
+      <i class="bi bi-house-fill"></i> Inicio
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+      <i class="bi bi-bullseye"></i> Misión y Visión
+    </a>
+    <a class="active" href="/huella-de-carbono-personal/HTML/valores.html">
+      <i class="bi bi-flower1"></i> Valores
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+      <i class="bi bi-shield-check"></i> Política
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+      <i class="bi bi-chat-dots"></i> Reseñas
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/calculadora.html">
+      <i class="bi bi-calculator-fill"></i> Calculadora
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/contactanos.html">
+      <i class="bi bi-envelope-fill"></i> Contactanos
+    </a>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="container my-5">
+    <div class="page-title fade-in-up">
+      <h1>Nuestros Valores</h1>
+      <p>Los principios fundamentales que guían nuestro compromiso con el planeta</p>
+    </div>
+
+    <div class="valores-intro fade-in-up">
+      <h2>
+        <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Icono Latido Verde" width="40" height="40">
+        Valores que nos definen
+      </h2>
+      <p>
+        En Latido Verde, nuestros valores son más que palabras: son el fundamento de cada acción que realizamos. 
+        Creemos en un mundo donde la sostenibilidad, el compromiso, la colaboración y la educación se unen 
+        para crear un futuro más verde y próspero para todos.
+      </p>
+    </div>
+
+    <div class="valores-grid fade-in-up">
+      <div class="valor-card">
+        <div class="valor-icon">
+          <i class="bi bi-tree-fill"></i>
+        </div>
+        <h3>Sostenibilidad</h3>
+        <p>
+          Promovemos decisiones conscientes que preservan los recursos naturales para las futuras generaciones. 
+          Cada acción cuenta cuando pensamos en el mañana que queremos construir.
+        </p>
+      </div>
+
+      <div class="valor-card">
+        <div class="valor-icon">
+          <i class="bi bi-lightning-fill"></i>
+        </div>
+        <h3>Compromiso</h3>
+        <p>
+          Nos dedicamos a reducir la huella de carbono personal y colectiva con acciones reales y medibles. 
+          El compromiso verdadero se demuestra con hechos, no solo con palabras.
+        </p>
+      </div>
+
+      <div class="valor-card">
+        <div class="valor-icon">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <h3>Colaboración</h3>
+        <p>
+          Creemos en el poder del trabajo conjunto entre comunidades, instituciones y personas. 
+          Unidos somos más fuertes y podemos lograr cambios significativos en nuestro entorno.
+        </p>
+      </div>
+
+      <div class="valor-card">
+        <div class="valor-icon">
+          <i class="bi bi-book-fill"></i>
+        </div>
+        <h3>Educación</h3>
+        <p>
+          Fomentamos el aprendizaje ambiental como herramienta fundamental para el cambio social. 
+          El conocimiento es la base para tomar decisiones informadas y responsables.
+        </p>
+      </div>
+
+      <div class="valor-card">
+        <div class="valor-icon">
+          <i class="bi bi-globe-americas"></i>
+        </div>
+        <h3>Responsabilidad Global</h3>
+        <p>
+          Entendemos que nuestras acciones locales tienen un impacto global. 
+          Asumimos la responsabilidad de cuidar nuestro planeta para las generaciones futuras.
+        </p>
+      </div>
+
+      <div class="valor-card">
+        <div class="valor-icon">
+          <i class="bi bi-lightbulb-fill"></i>
+        </div>
+        <h3>Innovación</h3>
+        <p>
+          Buscamos constantemente nuevas formas de abordar los desafíos ambientales. 
+          La innovación y la creatividad son esenciales para encontrar soluciones efectivas.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer mejorado -->
+  <footer class="text-center text-white py-4 fade-in-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-2 fs-5">&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
+          <p class="mb-3"><i class="bi bi-leaf me-2"></i>Comprometidos con un futuro sostenible</p>
+          <p class="mb-2"><strong>📍 Nuestras Ubicaciones</strong></p>
+          <p class="mb-2">Cra. 50 #35-20, Medellín, Colombia &nbsp;•&nbsp; Calle 45 #18-12, Bogotá, Colombia</p>
+          <p class="mb-3"><strong>📧</strong> latido.verde.net@gmail.com &nbsp;•&nbsp; <strong>📞</strong> (+57) 301 2345678</p>
+          <hr style="border-color: rgba(255,255,255,0.2); max-width: 300px; margin: 20px auto;">
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <span class="badge bg-success"><i class="bi bi-recycle me-1"></i>Eco-Friendly</span>
+            <span class="badge bg-success"><i class="bi bi-globe me-1"></i>Sostenible</span>
+            <span class="badge bg-success"><i class="bi bi-heart me-1"></i>Compromiso Verde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función para alternar tema
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'bi bi-moon-fill';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Cargar tema guardado
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+      }
+      
+      // Crear partículas de fondo
+      createParticles();
+      
+      // Añadir animaciones de entrada
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 200);
+        });
+      }, 100);
+    });
+
+    // Crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Efectos de hover para las tarjetas de valores
+    document.querySelectorAll('.valor-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Efecto parallax suave para las tarjetas
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const cards = document.querySelectorAll('.valor-card');
+      
+      cards.forEach((card, index) => {
+        const speed = 0.05 + (index * 0.01);
+        card.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contáctanos - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-green: #006644;
+      --secondary-green: #008856;
+      --light-green: #a1d7a3;
+      --dark-green: #1b5e20;
+      --accent-green: #e0f2e9;
+      --text-dark: #004d33;
+      --shadow: 0 8px 32px rgba(0,0,0,0.3);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme="dark"] {
+      --primary-green: #2e7d32;
+      --secondary-green: #4caf50;
+      --light-green: #66bb6a;
+      --dark-green: #1b5e20;
+      --accent-green: #263238;
+      --text-dark: #e8f5e8;
+      --shadow: 0 8px 32px rgba(0,0,0,0.6);
+      --glass-bg: rgba(0, 0, 0, 0.3);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--accent-green) 0%, #c8e6c9 100%);
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+      min-height: 100vh;
+    }
+
+    [data-theme="dark"] body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+    }
+
+    /* Barra de redes sociales */
+    .social-bar {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0 15px 15px 0;
+      padding: 15px 10px;
+      gap: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .social-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--glass-bg);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+    }
+
+    .social-bar a:hover {
+      transform: scale(1.1);
+      background: var(--primary-green);
+      box-shadow: 0 4px 15px rgba(0, 102, 68, 0.4);
+    }
+
+    .social-bar img {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--glass-border);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .brand-text h1 {
+      font-weight: 800;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin: 0;
+    }
+
+    .brand-text p {
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .header-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-container input {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      padding: 8px 40px 8px 15px;
+      border-radius: 25px;
+    }
+
+    .search-container input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-toggle {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Navegación */
+    nav {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #2e7d32 100%);
+      padding: 15px 0;
+      box-shadow: inset 0 -2px 10px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Header de contacto */
+    .header-contact {
+      background: linear-gradient(135deg, rgba(0, 102, 68, 0.9), rgba(0, 136, 86, 0.9)), 
+                  url('/huella-de-carbono-personal/IMG/contactanos.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 2s ease;
+    }
+
+    .header-contact:hover::before {
+      left: 100%;
+    }
+
+    .header-contact h1 {
+      font-size: 48px;
+      font-weight: 800;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Sección del formulario */
+    .contact-form-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      padding: 60px 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-top: -50px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .form-control {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-dark);
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 2px rgba(0, 102, 68, 0.2);
+    }
+
+    .form-control::placeholder {
+      color: rgba(0, 77, 51, 0.7);
+    }
+
+    [data-theme="dark"] .form-control {
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--text-dark);
+    }
+
+    [data-theme="dark"] .form-control::placeholder {
+      color: rgba(232, 245, 232, 0.7);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+    }
+
+    .btn-contact {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 102, 68, 0.3);
+    }
+
+    .btn-contact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 102, 68, 0.4);
+      background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+    }
+
+    /* Información de contacto */
+    .contact-info {
+      padding: 30px 0;
+    }
+
+    .contact-info h5 {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact-info p {
+      margin: 0;
+      color: var(--text-dark);
+    }
+
+    .icon-circle {
+      background: linear-gradient(135deg, var(--light-green), #c8e6c9);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: var(--dark-green);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .icon-circle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--dark-green) 0%, #0d4d20 100%);
+      color: white;
+      padding: 30px 0;
+      border-top: 3px solid var(--primary-green);
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+      margin-top: 50px;
+    }
+
+    footer hr {
+      border-color: var(--glass-border);
+      opacity: 0.3;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .social-bar {
+        display: none;
+      }
+      
+      .header-controls {
+        flex-direction: row;
+        gap: 15px;
+      }
+      
+      nav a {
+        margin: 0 10px;
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+      
+      .header-contact h1 {
+        font-size: 32px;
+      }
+      
+      .contact-form-section {
+        padding: 40px 20px;
+        margin-top: -30px;
+      }
+    }
+
+    /* Efectos de partículas */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Partículas de fondo -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Barra de redes sociales -->
+   <div class="social-bar">
+    <a href="https://www.x.com/VerdeLatid74290" aria-label="X" title="Síguenos en X">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg);">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577069371910" aria-label="Facebook" title="Síguenos en Facebook">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(220deg);">
+    </a>
+    <a href="https://www.youtube.com/@Latidoverde" aria-label="YouTube" title="Síguenos en YouTube">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(350deg);">
+    </a>
+    <a href="https://www.instagram.com/latido.verde_public/" aria-label="Instagram" title="Síguenos en Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+        width="24" height="24">
+    </a>
+  </div>
+
+  <!-- Header -->
+  <header class="d-flex justify-content-between align-items-center px-4 py-3">
+    <div class="logo-container">
+      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+      <div class="brand-text">
+        <h1 class="h4 mb-0">LATIDO VERDE</h1>
+        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container">
+          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+          <button class="search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+      <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-light btn-sm px-3">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+      </a>
+    </div>
+  </header>
+
+  <!-- Navegación -->
+  <nav class="text-center py-2">
+    <a href="/index.html">
+      <i class="bi bi-house-fill"></i> Inicio
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+      <i class="bi bi-bullseye"></i> Misión y Visión
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/valores.html">
+      <i class="bi bi-flower1"></i> Valores
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+      <i class="bi bi-shield-check"></i> Política
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+      <i class="bi bi-chat-dots"></i> Reseñas
+    </a>
+    <a href="/huella-de-carbono-personal/HTML/calculadora.html">
+      <i class="bi bi-calculator-fill"></i> Calculadora
+    </a>
+    <a class="active" href="/huella-de-carbono-personal/HTML/contactanos.html">
+      <i class="bi bi-envelope-fill"></i> Contactanos
+    </a>
+  </nav>
+
+  <!-- Header con fondo -->
+  <div class="header-contact">
+    <h1><i class="bi bi-envelope-heart me-3"></i>Contáctanos</h1>
+  </div>
+
+  <!-- Sección del formulario -->
+  <div class="container contact-form-section fade-in-up">
+    <div class="row">
+      <!-- Formulario -->
+      <div class="col-md-7">
+        <h3 class="mb-4" style="color: var(--primary-green); font-weight: 700;">
+          <i class="bi bi-chat-left-dots me-2"></i>Envíanos tu mensaje
+        </h3>
+        <form id="contactForm">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">
+              <i class="bi bi-person me-1"></i>Nombre *
+            </label>
+            <input type="text" class="form-control" id="nombre" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">
+              <i class="bi bi-envelope me-1"></i>Correo electrónico *
+            </label>
+            <input type="email" class="form-control" id="correo" placeholder="tu@email.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="organizacion" class="form-label">
+              <i class="bi bi-building me-1"></i>Organización
+            </label>
+            <input type="text" class="form-control" id="organizacion" placeholder="Nombre de tu organización (opcional)">
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">
+              <i class="bi bi-chat-text me-1"></i>Mensaje *
+            </label>
+            <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-contact">
+            <i class="bi bi-send me-2"></i>Enviar mensaje
+          </button>
+        </form>
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="col-md-5 contact-info">
+        <h3 class="mb-4" style="color: var(--primary-green); font-weight: 700;">
+          <i class="bi bi-info-circle me-2"></i>Información de contacto
+        </h3>
+        
+        <div class="mb-4">
+          <h5>
+            <span class="icon-circle">
+              <i class="bi bi-geo-alt-fill"></i>
+            </span>
+            Medellín
+          </h5>
+          <p>EcoCentro Verde, Cra. 50 #35-20<br>Medellín, Colombia</p>
+        </div>
+        
+        <div class="mb-4">
+          <h5>
+            <span class="icon-circle">
+              <i class="bi bi-geo-alt-fill"></i>
+            </span>
+            Bogotá
+          </h5>
+          <p>Calle 45 #18-12<br>Bogotá, Colombia</p>
+        </div>
+        
+        <div class="mb-4">
+          <h5>
+            <span class="icon-circle">
+              <i class="bi bi-envelope-fill"></i>
+            </span>
+            Correo
+          </h5>
+          <p>latido.verde.net@gmail.com</p>
+        </div>
+        
+        <div class="mb-4">
+          <h5>
+            <span class="icon-circle">
+              <i class="bi bi-telephone-fill"></i>
+            </span>
+            Teléfono
+          </h5>
+          <p>+57 301 2345678</p>
+        </div>
+        
+        <div class="mb-4">
+          <h5>
+            <span class="icon-circle">
+              <i class="bi bi-clock-fill"></i>
+            </span>
+            Horario
+          </h5>
+          <p>Lunes a Viernes: 8:00 am - 5:00 pm<br>Sábados: 9:00 am - 2:00 pm</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-white py-4 fade-in-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-2 fs-5">&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
+          <p class="mb-3"><i class="bi bi-leaf me-2"></i>Comprometidos con un futuro sostenible</p>
+          <hr style="border-color: rgba(255,255,255,0.2); max-width: 300px; margin: 20px auto;">
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <span class="badge bg-success"><i class="bi bi-recycle me-1"></i>Eco-Friendly</span>
+            <span class="badge bg-success"><i class="bi bi-globe me-1"></i>Sostenible</span>
+            <span class="badge bg-success"><i class="bi bi-heart me-1"></i>Compromiso Verde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función para alternar tema
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'bi bi-moon-fill';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Cargar tema guardado y efectos
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+      }
+      
+      // Crear partículas de fondo
+      createParticles();
+      
+      // Añadir animaciones de entrada
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 200);
+        });
+      }, 100);
+    });
+
+    // Crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Validación y manejo del formulario
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nombre = document.getElementById('nombre').value;
+      const correo = document.getElementById('correo').value;
+      const mensaje = document.getElementById('mensaje').value;
+      
+      if (nombre && correo && mensaje) {
+        // Simulación de envío exitoso
+        alert('¡Gracias por tu mensaje! Te responderemos pronto.');
+        this.reset();
+      } else {
+        alert('Por favor, completa todos los campos obligatorios.');
+      }
+    });
+
+    // Efectos de hover para los iconos
+    document.querySelectorAll('.icon-circle').forEach(icon => {
+      icon.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1) rotate(10deg)';
+      });
+      
+      icon.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+      });
+    });
+
+    // Efecto parallax suave
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const headerContact = document.querySelector('.header-contact');
+      if (headerContact) {
+        headerContact.style.transform = 'translateY(' + scrolled * 0.1 + 'px)';
+      }
+    });
+  </script>
+</body>
+
+</html>
