@@ -1,0 +1,522 @@
+:root {
+  --primary-green: #006644;
+  --secondary-green: #008856;
+  --light-green: #a1d7a3;
+  --dark-green: #1b5e20;
+  --accent-green: #e0f2e9;
+  --text-dark: #004d33;
+  --shadow: 0 8px 32px rgba(0,0,0,0.3);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] {
+  --primary-green: #2e7d32;
+  --secondary-green: #4caf50;
+  --light-green: #66bb6a;
+  --dark-green: #1b5e20;
+  --accent-green: #263238;
+  --text-dark: #e8f5e8;
+  --shadow: 0 8px 32px rgba(0,0,0,0.6);
+  --glass-bg: rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--accent-green) 0%, #c8e6c9 100%);
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  min-height: 100vh;
+}
+
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+}
+
+/* Barra de redes sociales mejorada */
+.social-bar {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0 15px 15px 0;
+  padding: 15px 10px;
+  gap: 15px;
+  box-shadow: var(--shadow);
+}
+
+.social-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: var(--glass-bg);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 1px solid var(--glass-border);
+  text-decoration: none;
+  outline: none;
+}
+
+.social-bar a:focus {
+  box-shadow: 0 0 0 3px var(--primary-green);
+  outline: none;
+}
+
+.social-bar a:hover,
+.social-bar a:focus-visible {
+  transform: scale(1.1);
+  background: var(--primary-green);
+  box-shadow: 0 4px 15px rgba(0, 102, 68, 0.4);
+}
+
+.social-bar img {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.3s ease;
+  filter: grayscale(0.2) brightness(0.8);
+}
+
+.social-bar a:hover img,
+.social-bar a:focus-visible img {
+  filter: brightness(10) invert(1) drop-shadow(0 0 2px #fff);
+}
+
+/* Header mejorado */
+header {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  border-bottom: 2px solid var(--glass-border);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-container img {
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover img {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.brand-text h1 {
+  font-weight: 800;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  margin: 0;
+}
+
+.brand-text p {
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Controles de header */
+.header-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-container input {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  padding: 8px 40px 8px 15px;
+  border-radius: 25px;
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-container input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Botón de modo oscuro */
+.theme-toggle {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Navegación mejorada */
+nav {
+  background: linear-gradient(135deg, var(--dark-green) 0%, #2e7d32 100%);
+  padding: 15px 0;
+  box-shadow: inset 0 -2px 10px rgba(0,0,0,0.2);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 20px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+nav a:hover::before {
+  left: 100%;
+}
+
+nav a:hover, nav a.active {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Contenido principal */
+main {
+  margin: 40px 0;
+  position: relative;
+}
+
+.page-header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  color: var(--primary-green);
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  font-style: italic;
+}
+
+/* Cards de reseñas mejoradas */
+.review-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.reviewer-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.5rem;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 102, 68, 0.3);
+}
+
+.reviewer-name {
+  font-weight: 700;
+  color: var(--primary-green);
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.review-text {
+  color: var(--text-dark);
+  line-height: 1.6;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 1.3rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.star.empty {
+  color: #ddd;
+}
+
+.rating-text {
+  margin-left: 10px;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Sección de formulario para nueva reseña */
+.add-review-section {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 40px;
+  box-shadow: var(--shadow);
+}
+
+.add-review-title {
+  color: var(--primary-green);
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.form-control {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-dark);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 102, 68, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.form-control::placeholder {
+  color: rgba(0, 77, 51, 0.7);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 102, 68, 0.3);
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 102, 68, 0.4);
+  color: white;
+}
+
+/* Footer mejorado */
+footer {
+  background: linear-gradient(135deg, var(--dark-green) 0%, #0d4d20 100%);
+  color: white;
+  padding: 30px 0;
+  border-top: 3px solid var(--primary-green);
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+}
+
+footer hr {
+  border-color: var(--glass-border);
+  opacity: 0.3;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.review-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.review-card:nth-child(1) { animation-delay: 0.1s; }
+.review-card:nth-child(2) { animation-delay: 0.2s; }
+.review-card:nth-child(3) { animation-delay: 0.3s; }
+.review-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-bar {
+    display: none;
+  }
+  
+  .header-controls {
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Efectos de partículas de fondo */
+.bg-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary-green);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Estilos para mensajes de alerta */
+.alert {
+  border-radius: 15px;
+  border: none;
+  backdrop-filter: blur(10px);
+}
+
+.alert-success {
+  background-color: rgba(212, 237, 218, 0.9);
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: rgba(248, 215, 218, 0.9);
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: rgba(255, 243, 205, 0.9);
+  color: #856404;
+}
+
+.spinner-border.text-success {
+  color: var(--primary-green) !important;
+}

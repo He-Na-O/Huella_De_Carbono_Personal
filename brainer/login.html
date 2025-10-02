@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="/brainer/huella-de-carbono-personal/CSS/registro.css" rel="stylesheet" />
+  <script src="/brainer/huella-de-carbono-personal/js/conexion.js" defer></script>
+</head>
+
+<body>
+  <!-- Partículas de fondo -->
+  <div class="bg-particles" id="particles"></div>
+
+  <!-- Barra de redes sociales -->
+  <div class="social-bar">
+    <a href="https://www.x.com/VerdeLatid74290" aria-label="X" title="Síguenos en X">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg);">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577069371910" aria-label="Facebook" title="Síguenos en Facebook">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(220deg);">
+    </a>
+    <a href="https://www.youtube.com/@Latidoverde" aria-label="YouTube" title="Síguenos en YouTube">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(350deg);">
+    </a>
+    <a href="https://www.instagram.com/latido.verde_public/" aria-label="Instagram" title="Síguenos en Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+        width="24" height="24">
+    </a>
+  </div>
+
+  <!-- Header mejorado -->
+  <header class="d-flex justify-content-between align-items-center px-4 py-3">
+    <div class="logo-container">
+      <img src="../IMG/logo.svg" alt="Logo" height="60">
+      <div class="brand-text">
+        <h1 class="h4 mb-0">LATIDO VERDE</h1>
+        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container">
+          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+          <button class="search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+      <a href="main.html" class="btn btn-light btn-sm px-3">
+        <i class="bi bi-house-fill me-1"></i>Volver al Inicio
+      </a>
+    </div>
+  </header>
+  
+  <!-- Navegación mejorada -->
+  <nav class="text-center py-2">
+    <a href="/main.html">
+      <i class="bi bi-house-fill"></i> Inicio
+    </a>
+    <a href="mision_vision.html">
+      <i class="bi bi-bullseye"></i> Misión y Visión
+    </a>
+    <a href="valores.html">
+      <i class="bi bi-flower1"></i> Valores
+    </a>
+    <a href="politica_de_calidad.html">
+      <i class="bi bi-shield-check"></i> Política
+    </a>
+    <a href="resenias.html">
+      <i class="bi bi-chat-dots"></i> Reseñas
+    </a>
+    <a href="calculadora.html">
+      <i class="bi bi-calculator-fill"></i> Calculadora
+    </a>
+    <a href="contactanos.html">
+      <i class="bi bi-envelope-fill"></i> Contactanos
+    </a>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <div class="form-container fade-in-up register-container" id="mainContainer">
+      <!-- Formulario de Registro -->
+      <div class="form-content active" id="registerContent">
+        <h2>
+          <i class="bi bi-person-plus"></i>
+          Crear Cuenta
+        </h2>
+        <form id="registerForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName" class="form-label">
+                <i class="bi bi-person me-2"></i>Nombre
+              </label>
+              <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName" class="form-label">
+                <i class="bi bi-person me-2"></i>Apellido (opcional)
+              </label>
+              <input type="text" class="form-control" id="lastName" placeholder="Tu apellido">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="registerEmail" class="form-label">
+              <i class="bi bi-envelope me-2"></i>Correo electrónico
+            </label>
+            <input type="email" class="form-control" id="registerEmail" placeholder="tu-email@ejemplo.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">
+              <i class="bi bi-at me-2"></i>Nombre de usuario
+            </label>
+              <input type="text" class="form-control" id="username" placeholder="tu_usuario" required>
+          </div>
+          <div class="mb-3 password-toggle">
+            <label for="registerPassword" class="form-label">
+              <i class="bi bi-lock me-2"></i>Contraseña
+            </label>
+            <input type="password" class="form-control" id="registerPassword" placeholder="••••••••" required>
+            <i class="bi bi-eye-slash"></i>
+            <div class="password-strength">
+              <div class="password-strength-bar" id="passwordStrengthBar"></div>
+            </div>
+            <small class="text-muted" id="passwordHelp">La contraseña debe tener al menos 8 caracteres</small>
+          </div>
+          <div class="mb-3 password-toggle">
+            <label for="confirmPassword" class="form-label">
+              <i class="bi bi-lock-check me-2"></i>Confirmar contraseña
+            </label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="••••••••" required>
+            <i class="bi bi-eye-slash"></i>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="acceptTerms" required>
+            <label class="form-check-label" for="acceptTerms">
+              <i class="bi bi-check-circle me-1"></i>Acepto los 
+              <a href="#" class="forgot-password">términos y condiciones</a> y la 
+              <a href="#" class="forgot-password">política de privacidad</a>
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="newsletter">
+            <label class="form-check-label" for="newsletter">
+              <i class="bi bi-envelope-heart me-1"></i>Quiero recibir noticias y actualizaciones sobre Latido Verde
+            </label>
+          </div>
+          <button type="submit" class="btn btn-register">
+            <i class="bi bi-person-plus me-2"></i>Crear Cuenta
+          </button>
+        </form>
+
+        <!-- Botones sociales para registro -->
+        <div class="social-login">
+          <h6>O regístrate con</h6>
+          <button class="btn btn-google">
+            <i class="bi bi-google me-2"></i>Registrarse con Google
+          </button>
+          <button class="btn btn-facebook">
+            <i class="bi bi-facebook me-2"></i>Registrarse con Facebook
+          </button>
+        </div>
+        <p class="text-center mt-3">
+          ¿Ya tienes una cuenta? 
+          <a href="inicio_de_sesion.html" class="forgot-password">
+            Inicia sesión aquí
+          </a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <div class="container">
+      <p class="mb-0">© 2024 Latido Verde. Todos los derechos reservados.</p>
+      <p class="mb-0">Late por la tierra. Siente el latido verde</p>
+    </div>
+  </footer>
+
+  <!-- Scripts de Bootstrap y funcionalidad personalizada -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función para alternar el modo oscuro
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+        themeIcon.classList.remove('bi-sun-fill');
+        themeIcon.classList.add('bi-moon-fill');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('bi-moon-fill');
+        themeIcon.classList.add('bi-sun-fill');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Función para medir la fortaleza de la contraseña
+    function setupPasswordStrength() {
+      const passwordInput = document.getElementById('registerPassword');
+      const strengthBar = document.getElementById('passwordStrengthBar');
+      const passwordHelp = document.getElementById('passwordHelp');
+      
+      if (passwordInput && strengthBar && passwordHelp) {
+        passwordInput.addEventListener('input', function() {
+          const password = this.value;
+          let strength = 0;
+          
+          // Verificar longitud
+          if (password.length >= 8) strength += 25;
+          
+          // Verificar si tiene letras minúsculas y mayúsculas
+          if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 25;
+          
+          // Verificar si tiene números
+          if (password.match(/\d/)) strength += 25;
+          
+          // Verificar si tiene caracteres especiales
+          if (password.match(/[^a-zA-Z\d]/)) strength += 25;
+          
+          // Actualizar la barra de fortaleza
+          strengthBar.className = 'password-strength-bar';
+          if (strength === 0) {
+            strengthBar.style.width = '0%';
+            passwordHelp.textContent = 'La contraseña debe tener al menos 8 caracteres';
+            passwordHelp.style.color = 'var(--text-dark)';
+          } else if (strength <= 25) {
+            strengthBar.classList.add('strength-weak');
+            passwordHelp.textContent = 'Contraseña débil';
+            passwordHelp.style.color = '#f44336';
+          } else if (strength <= 50) {
+            strengthBar.classList.add('strength-fair');
+            passwordHelp.textContent = 'Contraseña regular';
+            passwordHelp.style.color = '#ff9800';
+          } else if (strength <= 75) {
+            strengthBar.classList.add('strength-good');
+            passwordHelp.textContent = 'Contraseña buena';
+            passwordHelp.style.color = '#2196f3';
+          } else {
+            strengthBar.classList.add('strength-strong');
+            passwordHelp.textContent = 'Contraseña fuerte';
+            passwordHelp.style.color = '#4caf50';
+          }
+        });
+      }
+    }
+
+    // Función para crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      if (!particlesContainer) return;
+      
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Posición aleatoria
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Retraso aleatorio en la animación
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Inicialización cuando el DOM está cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      // Verificar tema guardado
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-icon').classList.remove('bi-moon-fill');
+        document.getElementById('theme-icon').classList.add('bi-sun-fill');
+      }
+      
+      // Configurar funcionalidades
+      setupPasswordStrength();
+      createParticles();
+      
+      // Configurar búsqueda
+      const searchBtn = document.querySelector('.search-btn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+          const searchTerm = document.querySelector('.search-container input').value;
+          if (searchTerm) {
+            alert(`Buscando: ${searchTerm}`);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
