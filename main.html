@@ -312,15 +312,16 @@
     }
 
     /* Sección de contacto mejorada */
-    .contacto {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      margin: 40px 360px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
+  .contacto {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
 
     .contacto h3 {
       color: var(--primary-green);
@@ -458,54 +459,71 @@
     </a>
   </div>
 
-  <!-- Header mejorado -->
-  <header class="d-flex justify-content-between align-items-center px-4 py-3">
-    <div class="logo-container">
-      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
-      <div class="brand-text">
-        <h1 class="h4 mb-0">LATIDO VERDE</h1>
-        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
-      </div>
+<!-- Header mejorado -->
+<header class="d-flex justify-content-between align-items-center px-4 py-3">
+  <div class="logo-container">
+    <img src="/brainer/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+    <div class="brand-text">
+      <h1 class="h4 mb-0">LATIDO VERDE</h1>
+      <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
     </div>
-    <div class="header-controls">
-      <div class="d-flex align-items-center gap-3">
-        <div class="search-container">
-          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
-          <button class="search-btn" type="button">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
-          <i class="bi bi-moon-fill" id="theme-icon"></i>
+  </div>
+  <div class="header-controls">
+    <div class="d-flex align-items-center gap-3">
+      <div class="search-container">
+        <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+        <button class="search-btn" type="button">
+          <i class="bi bi-search"></i>
         </button>
       </div>
-      <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-light btn-sm px-3">
-        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
-      </a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="bi bi-moon-fill" id="theme-icon"></i>
+      </button>
     </div>
-  </header>
+    
+    <!-- Menú desplegable para Login/Registro -->
+    <div class="dropdown">
+      <button class="btn btn-light btn-sm px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión / Registro
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/inicio_de_sesion.html">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+          </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/registro.html">
+            <i class="bi bi-person-plus me-2"></i>Crear Cuenta
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
 
   <!-- Navegación mejorada -->
   <nav class="text-center py-2">
-    <a class="active" href="/index.html">
+    <a class="active" href="/brainer/huella-de-carbono-personal/main.html">
       <i class="bi bi-house-fill"></i> Inicio
     </a>
-    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/mision_vision.html">
       <i class="bi bi-bullseye"></i> Misión y Visión
     </a>
-    <a href="/huella-de-carbono-personal/HTML/valores.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/valores.html">
       <i class="bi bi-flower1"></i> Valores
     </a>
-    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/politica_de_calidad.html">
       <i class="bi bi-shield-check"></i> Política
     </a>
-    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/resenas.html">
       <i class="bi bi-chat-dots"></i> Reseñas
     </a>
-    <a href="/huella-de-carbono-personal/HTML/calculadora.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/calculadora.html">
       <i class="bi bi-calculator-fill"></i> Calculadora
     </a>
-    <a href="/huella-de-carbono-personal/HTML/contactanos.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/contactanos.html">
       <i class="bi bi-envelope-fill"></i> Contactanos
     </a>
   </nav>
@@ -525,7 +543,7 @@
 
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="/huella-de-carbono-personal/IMG/carrusel1.jpg" class="d-block mx-auto" 
+            <img src="/brainer/huella-de-carbono-personal/IMG/carrusel1.jpg" class="d-block mx-auto" 
                  style="width: 500px; height: 500px; object-fit: cover;" alt="reciclaje">
             <div class="carousel-caption">
               <h5><i class="bi bi-recycle me-2"></i>Transforma tu Huella en Esperanza</h5>
@@ -533,7 +551,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="/huella-de-carbono-personal/IMG/carrusel2.jpg" class="d-block mx-auto" 
+            <img src="/brainer/huella-de-carbono-personal/IMG/carrusel2.jpg" class="d-block mx-auto" 
                  style="width: 500px; height: 500px; object-fit: cover;" alt="cuida la tierra">
             <div class="carousel-caption">
               <h5><i class="bi bi-globe me-2"></i>Protege la Tierra, Activa el Cambio</h5>
@@ -541,7 +559,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="/huella-de-carbono-personal/IMG/carrusel3.jpg" class="d-block mx-auto" 
+            <img src="/brainer/huella-de-carbono-personal/IMG/carrusel3.jpg" class="d-block mx-auto" 
                  style="width: 500px; height: 500px; object-fit: cover;" alt="la tierra en nuestras manos">
             <div class="carousel-caption">
               <h5><i class="bi bi-people me-2"></i>Unidos por el Planeta</h5>
@@ -549,7 +567,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="/huella-de-carbono-personal/IMG/carrusel4.jpg" class="d-block mx-auto" 
+            <img src="/brainer/huella-de-carbono-personal/IMG/carrusel4.jpg" class="d-block mx-auto"
                  style="width: 500px; height: 500px; object-fit: cover;" alt="contaminacion">
             <div class="carousel-caption">
               <h5><i class="bi bi-sun me-2"></i>Del Desperdicio a la Vida</h5>
@@ -557,7 +575,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="/huella-de-carbono-personal/IMG/carrusel5.jpg" class="d-block mx-auto" 
+            <img src="/brainer/huella-de-carbono-personal/IMG/carrusel5.jpg" class="d-block mx-auto" 
                  style="width: 500px; height: 500px; object-fit: cover;" alt="juntos cuidamos la tierra">
             <div class="carousel-caption">
               <h5><i class="bi bi-shield-check me-2"></i>Conservación Global</h5>
@@ -565,7 +583,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img src="/huella-de-carbono-personal/IMG/carrusel6.jpg" class="d-block mx-auto" 
+            <img src="/brainer/huella-de-carbono-personal/IMG/carrusel6.jpg" class="d-block mx-auto" 
                  style="width: 500px; height: 500px; object-fit: cover;" alt="la tierra está en nuestras manos">
             <div class="carousel-caption">
               <h5><i class="bi bi-heart me-2"></i>Amor que Protege</h5>
@@ -708,6 +726,7 @@
       }
     });
   </script>
+
 </body>
 
 </html>

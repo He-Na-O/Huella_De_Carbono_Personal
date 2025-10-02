@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reseñas - Latido Verde</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/brainer/huella-de-carbono-personal/CSS/resenas.css" />
+</head>
+
+<body>
+  <div class="bg-particles" id="particles"></div>
+
+  <div class="social-bar">
+    <a href="https://www.x.com/VerdeLatid74290" aria-label="X" title="Síguenos en X">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg);">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577069371910" aria-label="Facebook" title="Síguenos en Facebook">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(220deg);">
+    </a>
+    <a href="https://www.youtube.com/@Latidoverde" aria-label="YouTube" title="Síguenos en YouTube">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube"
+        style="filter: invert(0.2) sepia(1) saturate(5) hue-rotate(350deg);">
+    </a>
+    <a href="https://www.instagram.com/latido.verde_public/" aria-label="Instagram" title="Síguenos en Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+        width="24" height="24">
+    </a>
+  </div>
+
+  <header class="d-flex justify-content-between align-items-center px-4 py-3">
+    <div class="logo-container">
+      <img src="/brainer/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+      <div class="brand-text">
+        <h1 class="h4 mb-0">LATIDO VERDE</h1>
+        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container">
+          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+          <button class="search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+      
+      <div class="dropdown">
+        <button class="btn btn-light btn-sm px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión / Registro
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/inicio_de_sesion.html">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/registro.html">
+              <i class="bi bi-person-plus me-2"></i>Crear Cuenta
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <nav class="text-center py-2">
+    <a href="/brainer/main.html">
+      <i class="bi bi-house-fill"></i> Inicio
+    </a>
+    <a href="/brainer/huella-de-carbono-personal/HTML/mision_vision.html">
+      <i class="bi bi-bullseye"></i> Misión y Visión
+    </a>
+    <a href="/brainer/huella-de-carbono-personal/HTML/valores.html">
+      <i class="bi bi-flower1"></i> Valores
+    </a>
+    <a href="/brainer/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+      <i class="bi bi-shield-check"></i> Política
+    </a>
+    <a class="active" href="/brainer/huella-de-carbono-personal/HTML/resenas.html">
+      <i class="bi bi-chat-dots"></i> Reseñas
+    </a>
+    <a href="/brainer/huella-de-carbono-personal/HTML/calculadora.html">
+      <i class="bi bi-calculator-fill"></i> Calculadora
+    </a>
+    <a href="/brainer/huella-de-carbono-personal/HTML/contactanos.html">
+      <i class="bi bi-envelope-fill"></i> Contáctanos
+    </a>
+  </nav>
+
+  <main class="container my-5">
+    <div class="page-header fade-in-up">
+      <h1><i class="bi bi-chat-heart me-3"></i>Reseñas y Opiniones</h1>
+      <p>"Descubre lo que nuestra comunidad dice sobre Latido Verde y cómo estamos impactando juntos el planeta"</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="review-card">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <h5 class="reviewer-name">María López</h5>
+          </div>
+          <p class="review-text">
+            "Gracias a Latido Verde aprendí cómo mis hábitos diarios afectan al planeta. La plataforma es muy intuitiva y educativa. ¡Excelente iniciativa para crear conciencia ambiental!"
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <span class="rating-text">Excelente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="review-card">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <h5 class="reviewer-name">Carlos Gómez</h5>
+          </div>
+          <p class="review-text">
+            "Muy útil para reflexionar sobre nuestras decisiones diarias. Me encantó el enfoque juvenil y la forma creativa de abordar temas ambientales. Definitivamente recomendado."
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star star empty"></i>
+            <span class="rating-text">Muy bueno</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="review-card">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <h5 class="reviewer-name">Valentina Ríos</h5>
+          </div>
+          <p class="review-text">
+            "Una forma muy bonita y educativa de aprender sobre la huella de carbono. Las herramientas son fáciles de usar y los consejos muy prácticos. ¡Gracias por el impacto positivo!"
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <span class="rating-text">Excelente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="review-card">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <h5 class="reviewer-name">Samuel Torres</h5>
+          </div>
+          <p class="review-text">
+            "Fácil de usar y con mucha información valiosa. Me ayudó a cambiar mis hábitos diarios y a ser más consciente del impacto ambiental. La interfaz es muy amigable."
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star star empty"></i>
+            <span class="rating-text">Muy bueno</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mt-5">Reseñas de la comunidad</h3>
+    <div id="dynamicResenas" class="row g-4 mb-4">
+        <div class="col-12 text-center py-4">
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Cargando reseñas...</span>
+            </div>
+            <p class="mt-2">Cargando reseñas...</p>
+        </div>
+    </div>
+
+    <div class="add-review-section fade-in-up">
+      <h3 class="add-review-title">
+        <i class="bi bi-pencil-square me-2"></i>
+        ¡Comparte tu experiencia!
+      </h3>
+
+      <form id="formResena">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="reviewerName" class="form-label fw-bold">Tu nombre</label>
+            <input type="text" class="form-control" id="reviewerName" name="nombre" placeholder="Escribe tu nombre" required>
+          </div>
+          <div class="col-md-6">
+            <label for="rating" class="form-label fw-bold">Calificación</label>
+            <select class="form-control" id="rating" name="calificacion" required>
+              <option value="">Selecciona una calificación</option>
+              <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+              <option value="4">⭐⭐⭐⭐ Muy bueno</option>
+              <option value="3">⭐⭐⭐ Bueno</option>
+              <option value="2">⭐⭐ Regular</option>
+              <option value="1">⭐ Malo</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="reviewText" class="form-label fw-bold">Tu reseña</label>
+            <textarea class="form-control" id="reviewText" name="contenido" rows="4" placeholder="Cuéntanos tu experiencia con Latido Verde..." required></textarea>
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-submit">
+              <i class="bi bi-send me-2"></i>
+              Enviar Reseña
+            </button>
+          </div>
+        </div>
+      </form>
+      <div id="formMessage" class="mt-3"></div>
+    </div>
+  </main>
+
+  <footer class="text-center text-white py-4 fade-in-up">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-2 fs-5">&copy; 2025 Latido Verde - Todos los derechos reservados.</p>
+          <p class="mb-3"><i class="bi bi-leaf me-2"></i>Comprometidos con un futuro sostenible</p>
+          <hr style="border-color: rgba(255,255,255,0.2); max-width: 300px; margin: 20px auto;">
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <span class="badge bg-success"><i class="bi bi-recycle me-1"></i>Eco-Friendly</span>
+            <span class="badge bg-success"><i class="bi bi-globe me-1"></i>Sostenible</span>
+            <span class="badge bg-success"><i class="bi bi-heart me-1"></i>Compromiso Verde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // RUTA ABSOLUTA CORREGIDA
+    const API_BASE = '/brainer/huella-de-carbono-personal/php/';
+
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'bi bi-moon-fill';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'bi bi-sun-fill';
+      }
+      
+      createParticles();
+      
+      setTimeout(() => {
+        document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 200);
+        });
+      }, 100);
+      
+      cargarResenasReales();
+      document.getElementById('formResena').addEventListener('submit', manejarEnvioFormulario);
+    });
+
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function renderStars(n) {
+      n = parseInt(n) || 0;
+      let s = '';
+      for (let i = 0; i < 5; i++) {
+        s += (i < n) ? '<i class="bi bi-star-fill star"></i>' : '<i class="bi bi-star star empty"></i>';
+      }
+      return s;
+    }
+
+    function ratingText(n) {
+      switch (String(n)) {
+        case '5': return 'Excelente';
+        case '4': return 'Muy bueno';
+        case '3': return 'Bueno';
+        case '2': return 'Regular';
+        case '1': return 'Malo';
+        default: return '';
+      }
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return '';
+      
+      try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('es-ES', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } catch (e) {
+        return dateString;
+      }
+    }
+
+    function cargarResenasReales() {
+      const contenedor = document.getElementById('dynamicResenas');
+      if (!contenedor) return;
+      
+      fetch(API_BASE + 'listar_resena.php')
+        .then(response => response.json())
+        .then(data => {
+          if (!data || data.length === 0) {
+            contenedor.innerHTML = `
+              <div class="col-12 text-center py-4">
+                <i class="bi bi-chat-dots" style="font-size: 3rem;"></i>
+                <p class="mt-3">Aún no hay reseñas. ¡Sé el primero!</p>
+              </div>`;
+            return;
+          }
+          
+          let html = '';
+          data.forEach(resena => {
+            html += `
+              <div class="col-lg-6">
+                <div class="review-card">
+                  <div class="reviewer-info">
+                    <div class="reviewer-avatar"><i class="bi bi-person-fill"></i></div>
+                    <h5 class="reviewer-name">${escapeHtml(resena.nombre)}</h5>
+                  </div>
+                  <p class="review-text">${escapeHtml(resena.contenido)}</p>
+                  <div class="rating">
+                    ${renderStars(resena.calificacion)} 
+                    <span class="rating-text">${ratingText(resena.calificacion)}</span>
+                  </div>
+                  ${resena.fecha ? `<small class="text-muted">${formatDate(resena.fecha)}</small>` : ''}
+                </div>
+              </div>`;
+          });
+          
+          contenedor.innerHTML = html;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          contenedor.innerHTML = `
+            <div class="col-12">
+              <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle"></i> Error cargando reseñas
+              </div>
+            </div>`;
+        });
+    }
+
+    function manejarEnvioFormulario(e) {
+      e.preventDefault();
+      
+      const form = this;
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const messageDiv = document.getElementById('formMessage');
+      
+      // Prevenir doble envío
+      if (submitBtn.disabled) return;
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Enviando...';
+      messageDiv.innerHTML = '';
+      
+      fetch(API_BASE + 'guardar_resena.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          messageDiv.innerHTML = `
+            <div class="alert alert-success">
+              <i class="bi bi-check-circle"></i> ${data.msg}
+            </div>`;
+          form.reset();
+          cargarResenasReales();
+        } else {
+          throw new Error(data.msg || 'Error desconocido');
+        }
+      })
+      .catch(error => {
+        messageDiv.innerHTML = `
+          <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle"></i> Error: ${error.message}
+          </div>`;
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="bi bi-send me-2"></i> Enviar Reseña';
+      });
+    }
+  </script>
+</body>
+</html>

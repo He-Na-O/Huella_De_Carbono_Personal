@@ -78,14 +78,19 @@
       border-radius: 50%;
       transition: all 0.3s ease;
       border: 1px solid var(--glass-border);
-      color: var(--text-dark);
       text-decoration: none;
+      outline: none;
     }
 
-    .social-bar a:hover {
+    .social-bar a:focus {
+      box-shadow: 0 0 0 3px var(--primary-green);
+      outline: none;
+    }
+
+    .social-bar a:hover,
+    .social-bar a:focus-visible {
       transform: scale(1.1);
       background: var(--primary-green);
-      color: white;
       box-shadow: 0 4px 15px rgba(0, 102, 68, 0.4);
     }
     
@@ -93,7 +98,14 @@
       width: 24px;
       height: 24px;
       transition: filter 0.3s ease;
+      filter: grayscale(0.2) brightness(0.8);
     }
+
+    .social-bar a:hover img,
+    .social-bar a:focus-visible img {
+      filter: brightness(10) invert(1) drop-shadow(0 0 2px #fff);
+    }
+    
     /* Header mejorado */
     header {
       background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
@@ -477,6 +489,45 @@
         transform: translateY(-20px);
       }
     }
+
+    /* Botón "Ir arriba" */
+    .go-top-btn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1200;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary-green);
+      color: white;
+      border: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .go-top-btn:hover {
+      transform: translateY(-3px);
+      background: var(--secondary-green);
+    }
+
+    /* Mensaje de búsqueda sin resultados */
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      grid-column: 1 / -1;
+      display: none;
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      color: var(--primary-green);
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
@@ -504,50 +555,67 @@
     </a>
   </div>
   <!-- Header mejorado -->
-  <header class="d-flex justify-content-between align-items-center px-4 py-3">
-    <div class="logo-container">
-      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
-      <div class="brand-text">
-        <h1 class="h4 mb-0">LATIDO VERDE</h1>
-        <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
-      </div>
+<header class="d-flex justify-content-between align-items-center px-4 py-3">
+  <div class="logo-container">
+    <img src="/brainer/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+    <div class="brand-text">
+      <h1 class="h4 mb-0">LATIDO VERDE</h1>
+      <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
     </div>
-    <div class="header-controls">
-      <div class="d-flex align-items-center gap-3">
-        <div class="search-container">
-          <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
-          <button class="search-btn" type="button">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
-          <i class="bi bi-moon-fill" id="theme-icon"></i>
+  </div>
+  <div class="header-controls">
+    <div class="d-flex align-items-center gap-3">
+      <div class="search-container">
+        <input type="search" class="form-control" placeholder="Buscar..." style="width: 220px;">
+        <button class="search-btn" type="button">
+          <i class="bi bi-search"></i>
         </button>
       </div>
-      <a href="/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="btn btn-light btn-sm px-3">
-        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
-      </a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+        <i class="bi bi-moon-fill" id="theme-icon"></i>
+      </button>
     </div>
-  </header>
+    
+    <!-- Menú desplegable para Login/Registro -->
+    <div class="dropdown">
+      <button class="btn btn-light btn-sm px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión / Registro
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/inicio_de_sesion.html">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+          </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/registro.html">
+            <i class="bi bi-person-plus me-2"></i>Crear Cuenta
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
 
   <!-- Navegación mejorada -->
   <nav class="text-center py-2">
-    <a href="/index.html">
+    <a href="/brainer/main.html">
       <i class="bi bi-house-fill"></i> Inicio
     </a>
-    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/mision_vision.html">
       <i class="bi bi-bullseye"></i> Misión y Visión
     </a>
-    <a class="active" href="/huella-de-carbono-personal/HTML/valores.html">
+    <a class="active" href="/brainer/huella-de-carbono-personal/HTML/valores.html">
       <i class="bi bi-flower1"></i> Valores
     </a>
-    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/politica_de_calidad.html">
       <i class="bi bi-shield-check"></i> Política
     </a>
-    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/resenas.html">
       <i class="bi bi-chat-dots"></i> Reseñas
     </a>
-    <a href="/huella-de-carbono-personal/HTML/calculadora.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/calculadora.html">
       <i class="bi bi-calculator-fill"></i> Calculadora
     </a>
     <a href="/huella-de-carbono-personal/HTML/contactanos.html">
@@ -560,6 +628,9 @@
     <div class="page-title fade-in-up">
       <h1>Nuestros Valores</h1>
       <p>Los principios fundamentales que guían nuestro compromiso con el planeta</p>
+      <div class="mt-3">
+        <input type="search" id="valorSearch" class="form-control" placeholder="Buscar valor..." style="max-width:350px; margin:0 auto;">
+      </div>
     </div>
 
     <div class="valores-intro fade-in-up">
@@ -574,7 +645,7 @@
       </p>
     </div>
 
-    <div class="valores-grid fade-in-up">
+    <div class="valores-grid fade-in-up" id="valoresGrid">
       <div class="valor-card">
         <div class="valor-icon">
           <i class="bi bi-tree-fill"></i>
@@ -640,8 +711,20 @@
           La innovación y la creatividad son esenciales para encontrar soluciones efectivas.
         </p>
       </div>
+
+      <!-- Mensaje para cuando no hay resultados -->
+      <div class="no-results" id="noResults">
+        <i class="bi bi-search"></i>
+        <h3>No se encontraron resultados</h3>
+        <p>Intenta con otras palabras clave o términos más generales</p>
+      </div>
     </div>
   </main>
+
+  <!-- Botón flotante "Ir arriba" -->
+  <button class="go-top-btn" id="goTopBtn" aria-label="Ir arriba" title="Ir arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
   <!-- Footer mejorado -->
   <footer class="text-center text-white py-4 fade-in-up">
@@ -733,17 +816,56 @@
       });
     });
 
-    // Efecto parallax suave para las tarjetas
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const cards = document.querySelectorAll('.valor-card');
+    // Búsqueda de valores - FUNCIÓN CORREGIDA
+    document.getElementById('valorSearch').addEventListener('input', function() {
+      const query = this.value.trim().toLowerCase();
+      const valorCards = document.querySelectorAll('.valor-card:not(#noResults)');
+      const noResults = document.getElementById('noResults');
+      let hasResults = false;
       
-      cards.forEach((card, index) => {
-        const speed = 0.05 + (index * 0.01);
-        card.style.transform = `translateY(${scrolled * speed}px)`;
+      valorCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        
+        if (title.includes(query) || description.includes(query)) {
+          card.style.display = '';
+          hasResults = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Mostrar u ocultar mensaje de no resultados
+      if (!hasResults && query !== '') {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    });
+
+    // Botón "Ir arriba"
+    const goTopBtn = document.getElementById('goTopBtn');
+    window.addEventListener('scroll', function() {
+      // Mostrar/ocultar botón
+      if (window.scrollY > 250) {
+        goTopBtn.style.display = 'flex';
+      } else {
+        goTopBtn.style.display = 'none';
+      }
+    });
+    goTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Accesibilidad: tarjetas navegables
+    document.querySelectorAll('.valor-card').forEach(card => {
+      card.setAttribute('tabindex', '0');
+      card.addEventListener('focus', function() {
+        this.style.boxShadow = '0 0 0 4px #4caf50';
+      });
+      card.addEventListener('blur', function() {
+        this.style.boxShadow = '';
       });
     });
   </script>
-</body>
+</body> 
 
 </html>

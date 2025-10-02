@@ -565,7 +565,8 @@
   <!-- Header mejorado -->
   <header class="d-flex justify-content-between align-items-center px-4 py-3">
     <div class="logo-container">
-      <img src="/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
+      <!-- CORREGIDO: Ruta del logo -->
+      <img src="/brainer/huella-de-carbono-personal/IMG/logo.svg" alt="Logo" height="60">
       <div class="brand-text">
         <h1 class="h4 mb-0">LATIDO VERDE</h1>
         <p class="mb-0" style="font-size: 0.9rem;">Late por la tierra. Siente el latido verde</p>
@@ -583,7 +584,8 @@
           <i class="bi bi-moon-fill" id="theme-icon"></i>
         </button>
       </div>
-      <a href="/index.html" class="btn btn-light btn-sm px-3">
+      <!-- CORREGIDO: Ruta del botón "Volver al Inicio" -->
+      <a href="/brainer/main.html" class="btn btn-light btn-sm px-3">
         <i class="bi bi-house-fill me-1"></i>Volver al Inicio
       </a>
     </div>
@@ -591,25 +593,26 @@
   
   <!-- Navegación mejorada -->
   <nav class="text-center py-2">
-    <a href="/index.html">
+    <!-- CORREGIDO: Rutas de navegación -->
+    <a href="/brainer/main.html">
       <i class="bi bi-house-fill"></i> Inicio
     </a>
-    <a href="/huella-de-carbono-personal/HTML/mision_vision.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/mision_vision.html">
       <i class="bi bi-bullseye"></i> Misión y Visión
     </a>
-    <a href="/huella-de-carbono-personal/HTML/valores.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/valores.html">
       <i class="bi bi-flower1"></i> Valores
     </a>
-    <a href="/huella-de-carbono-personal/HTML/politica_de_calidad.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/politica_de_calidad.html">
       <i class="bi bi-shield-check"></i> Política
     </a>
-    <a href="/huella-de-carbono-personal/HTML/reseñas.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/resenas.html">
       <i class="bi bi-chat-dots"></i> Reseñas
     </a>
-    <a href="/huella-de-carbono-personal/HTML/calculadora.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/calculadora.html">
       <i class="bi bi-calculator-fill"></i> Calculadora
     </a>
-    <a href="/huella-de-carbono-personal/HTML/contactanos.html">
+    <a href="/brainer/huella-de-carbono-personal/HTML/contactanos.html">
       <i class="bi bi-envelope-fill"></i> Contactanos
     </a>
   </nav>
@@ -654,13 +657,20 @@
       <!-- Botones sociales -->
       <div class="social-login">
         <h6>O continúa con</h6>
-        <button class="btn btn-google">
+        <button class="btn btn-google" id="googleLogin">
           <i class="bi bi-google me-2"></i>Iniciar con Google
         </button>
-        <button class="btn btn-facebook">
+        <button class="btn btn-facebook" id="facebookLogin">
           <i class="bi bi-facebook me-2"></i>Iniciar con Facebook
         </button>
       </div>
+      <!-- AÑADIDO: Enlace para registro -->
+      <p class="text-center mt-3">
+        ¿No tienes una cuenta? 
+        <a href="/brainer/huella-de-carbono-personal/HTML/registro.html" class="forgot-password">
+          Regístrate aquí
+        </a>
+      </p>
     </div>
   </main>
 
@@ -683,7 +693,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   // Función para alternar tema
   function toggleTheme() {
@@ -701,7 +710,7 @@
     }
   }
 
-  // Cagar tema guardado
+  // Cargar tema guardado
   document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     const themeIcon = document.getElementById('theme-icon');
@@ -714,7 +723,7 @@
     // Crear partículas de fondo
     createParticles();
     
-    // Anadir animaciones de entrada
+    // Añadir animaciones de entrada
     setTimeout(() => {
       document.querySelectorAll('.fade-in-up').forEach((el, index) => {
         setTimeout(() => {
@@ -751,60 +760,137 @@
     this.classList.toggle('bi-eye');
     this.classList.toggle('bi-eye-slash');
   });
+
   // Validación del formulario
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    // Credenciales de administradores (simuladas)
-    const adminCredentials = [
-      {
-        email: "brainermontoya383@gmail.com",
-        username: "admin",
-        password: "1128282968bb",
-        name: "Brainer Montoya",
-        role: "Administrador Principal"
-      },
-      {
-        email: "henaosebas315@gmail.com",
-        username: "owner",
-        password: "Nain456",
-        name: "SebasNao",
-        role: "Administrador ininciativo"
-      },
-      {
-        email: "tamara@gotmail.com",
-        username: "admin3",
-        password: "1234",
-        name: "Admin Terciario",
-        role: "Moderador"
-      }
-    ];
-    
-    // Verificar si las credenciales coinciden con algún admin
-    const admin = adminCredentials.find(cred => 
-      (email === cred.email || email === cred.username) && 
-      password === cred.password
-    );
-    
-    if (admin) {
-      // Establecer datos de autenticación
-      sessionStorage.setItem('adminAuthenticated', 'true');
-      sessionStorage.setItem('adminName', admin.name);
-      sessionStorage.setItem('adminRole', admin.role);
-      sessionStorage.setItem('adminInitials', admin.name.split(' ').map(n => n[0]).join(''));
-      
-      // Redirigir a admin.html
-      window.location.href = "admin.html";
-    } else if (email && password) {
-      // Simular autenticación para usuarios normales
-      alert('Inicio de sesión exitoso (usuario regular)');
-      // Aquí podrías redirigir a otra página para usuarios normales
-    } else {
-      alert('Por favor complete todos los campos');
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  
+  // Validación básica
+  if (!email || !password) {
+    alert('Por favor complete todos los campos');
+    return;
+  }
+  
+  // Credenciales de administradores (simuladas) - MANTENER ESTA PARTE
+  const adminCredentials = [
+    {
+      email: "brainermontoya383@gmail.com",
+      username: "admin",
+      password: "1128282968bb",
+      name: "Brainer Montoya",
+      role: "Administrador Principal"
+    },
+    {
+      email: "henaosebas315@gmail.com",
+      username: "owner",
+      password: "Nain456",
+      name: "SebasNao",
+      role: "Administrador ininciativo"
+    },
+    {
+      email: "tamara@gotmail.com",
+      username: "admin3",
+      password: "1234",
+      name: "Admin Terciario",
+      role: "Moderador"
     }
+  ];
+  
+  // Verificar si las credenciales coinciden con algún admin
+  const admin = adminCredentials.find(cred => 
+    (email === cred.email || email === cred.username) && 
+    password === cred.password
+  );
+  
+  if (admin) {
+    // ES ADMINISTRADOR - Login directo sin BD
+    sessionStorage.setItem('adminAuthenticated', 'true');
+    sessionStorage.setItem('adminName', admin.name);
+    sessionStorage.setItem('adminRole', admin.role);
+    sessionStorage.setItem('adminInitials', admin.name.split(' ').map(n => n[0]).join(''));
+    
+    alert('✅ Bienvenido, ' + admin.name);
+    window.location.href = "/brainer/huella-de-carbono-personal/HTML/admin.html";
+    return; // Salir aquí, no hacer petición a la BD
+  }
+  
+  // SI NO ES ADMIN, verificar en la base de datos
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Verificando...';
+  
+  try {
+    const response = await fetch('http://127.0.0.1/brainer/huella-de-carbono-personal/php/login.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    });
+    
+    const data = await response.json();
+    
+    console.log('Respuesta del servidor:', data);
+    
+    if (data.success) {
+      // Usuario normal registrado
+      sessionStorage.setItem('userAuthenticated', 'true');
+      sessionStorage.setItem('userId', data.data.user_id);
+      sessionStorage.setItem('userName', data.data.name);
+      sessionStorage.setItem('userEmail', data.data.email);
+      
+      alert('✅ ' + data.message);
+      window.location.href = '/brainer/huella-de-carbono-personal/HTML/calculadora.html';
+      
+    } else {
+      // Error de autenticación
+      alert('❌ ' + data.message);
+      
+      // Si el mensaje indica que debe registrarse
+      if (data.message.includes('regístrate') || data.message.includes('registrado')) {
+        const registrarse = confirm(data.message + '\n\n¿Deseas ir a la página de registro?');
+        if (registrarse) {
+          window.location.href = '/brainer/huella-de-carbono-personal/HTML/registro.html';
+        }
+      }
+    }
+    
+  } catch (error) {
+    console.error('Error en el login:', error);
+    alert('❌ Error de conexión. Verifica que XAMPP esté activo.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="bi bi-arrow-right-circle me-2"></i>Entrar';
+  }
+});
+
+  // Función para iniciar sesión con Google
+  document.getElementById('googleLogin').addEventListener('click', function() {
+    // URL de inicio de sesión de Google
+    const googleAuthUrl = 'https://accounts.google.com/AccountChooser';
+    
+    // Redirigir a la página de autenticación de Google
+    window.location.href = googleAuthUrl;
+  });
+
+  // Función para iniciar sesión con Facebook
+  document.getElementById('facebookLogin').addEventListener('click', function() {
+    // Configuración para OAuth de Facebook
+    const clientId = 'TU_CLIENT_ID_DE_FACEBOOK'; // Reemplaza con tu Client ID real
+    const redirectUri = encodeURIComponent('https://tu-dominio.com/auth/facebook/callback'); // Reemplaza con tu URL de callback
+    const scope = 'email,public_profile'; // Permisos solicitados
+    
+    // URL de inicio de sesión de Facebook
+    const facebookAuthUrl = `https://www.facebook.com/v2.0/dialog/oauth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code`;
+    
+    // Redirigir a la página de autenticación de Facebook
+    window.location.href = facebookAuthUrl;
   });
 </script>
 </body>
