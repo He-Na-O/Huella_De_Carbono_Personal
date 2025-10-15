@@ -1,5 +1,5 @@
 <?php
-// admin_data.php - API completa para el panel de administración
+// admin_data.php - API completa para el panel de administraciÃ³n
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -20,7 +20,7 @@ try {
     $pdo = getConnection();
     
     if (!$pdo) {
-        throw new Exception('Error de conexión a la base de datos');
+        throw new Exception('Error de conexiÃ³n a la base de datos');
     }
     
     $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
@@ -51,7 +51,7 @@ try {
             break;
             
         default:
-            throw new Exception('Acción no válida');
+            throw new Exception('AcciÃ³n no vÃ¡lida');
     }
     
 } catch (Exception $e) {
@@ -62,7 +62,7 @@ try {
     ]);
 }
 
-// ========== FUNCIÓN DASHBOARD ==========
+// ========== FUNCIÃ“N DASHBOARD ==========
 function obtenerDashboard($pdo) {
     // Total de usuarios
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuario");
@@ -76,7 +76,7 @@ function obtenerDashboard($pdo) {
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM contacto");
     $totalContactos = $stmt->fetch()['total'];
     
-    // Total de reseñas
+    // Total de reseÃ±as
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM sistema_resenas");
     $totalResenas = $stmt->fetch()['total'];
     
@@ -91,7 +91,7 @@ function obtenerDashboard($pdo) {
     ]);
 }
 
-// ========== FUNCIÓN USUARIOS ==========
+// ========== FUNCIÃ“N USUARIOS ==========
 function obtenerUsuarios($pdo) {
     $stmt = $pdo->query("
         SELECT 
@@ -113,7 +113,7 @@ function obtenerUsuarios($pdo) {
     ]);
 }
 
-// ========== FUNCIÓN CONTACTOS ==========
+// ========== FUNCIÃ“N CONTACTOS ==========
 function obtenerContactos($pdo) {
     $stmt = $pdo->query("
         SELECT 
@@ -137,11 +137,11 @@ function obtenerContactos($pdo) {
     ]);
 }
 
-// ========== FUNCIÓN ACTIVIDAD RECIENTE ==========
+// ========== FUNCIÃ“N ACTIVIDAD RECIENTE ==========
 function obtenerActividad($pdo) {
     $actividades = [];
     
-    // Últimos usuarios registrados
+    // Ãšltimos usuarios registrados
     $stmt = $pdo->query("
         SELECT 
             Nombre as usuario,
@@ -154,7 +154,7 @@ function obtenerActividad($pdo) {
     ");
     $actividades = array_merge($actividades, $stmt->fetchAll());
     
-    // Últimos contactos
+    // Ãšltimos contactos
     $stmt = $pdo->query("
         SELECT 
             Nombre as usuario,
@@ -167,11 +167,11 @@ function obtenerActividad($pdo) {
     ");
     $actividades = array_merge($actividades, $stmt->fetchAll());
     
-    // Últimas evaluaciones
+    // Ãšltimas evaluaciones
     $stmt = $pdo->query("
         SELECT 
             u.Nombre as usuario,
-            'Cálculo de huella de carbono' as accion,
+            'CÃ¡lculo de huella de carbono' as accion,
             e.Fecha as fecha,
             'Completado' as estado
         FROM evaluacion_huella e
@@ -192,7 +192,7 @@ function obtenerActividad($pdo) {
     ]);
 }
 
-// ========== FUNCIÓN RESEÑAS ==========
+// ========== FUNCIÃ“N RESEÃ‘AS ==========
 function obtenerResenas($pdo) {
     $stmt = $pdo->query("
         SELECT 
@@ -215,7 +215,7 @@ function obtenerResenas($pdo) {
     ]);
 }
 
-// ========== FUNCIÓN CÁLCULOS ==========
+// ========== FUNCIÃ“N CÃLCULOS ==========
 function obtenerCalculos($pdo) {
     $stmt = $pdo->query("
         SELECT 

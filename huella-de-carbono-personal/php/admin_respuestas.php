@@ -1,97 +1,68 @@
 <?php
-// admin_respuestas.php - API para gestionar respuestas del admin
-session_start();
+// admin_respuestas.php - API para listar todas las reseñas en el panel admin
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once 'conexion.php';
+require_once __DIR__ . '/conexion.php';
 
+// Headers
 header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 try {
+    // Obtener conexión
     $pdo = getConnection();
     
-    $accion = isset($_POST['accion']) ? $_POST['accion'] : '';
-    
-    switch($accion) {
-        case 'responder_resena':
-            responderResena($pdo);
-            break;
-            
-        case 'obtener_respuestas':
-            obtenerRespuestas($pdo);
-            break;
-            
-        default:
-            throw new Exception('Acción no válida');
+    if (!$pdo) {
+        throw new Exception('Error de conexión a la base de datos');
     }
     
-} catch (Exception $e) {
-    http_response_code(400);
-    echo json_encode([
-        'exito' => false,
-        'mensaje' => $e->getMessage()
-    ]);
-}
-
-function responderResena($pdo) {
-    $idResena = isset($_POST['id_resena']) ? intval($_POST['id_resena']) : 0;
-    $contenido = isset($_POST['contenido']) ? trim($_POST['contenido']) : '';
-    $nombreAdmin = isset($_POST['nombre_admin']) ? trim($_POST['nombre_admin']) : 'Admin';
+    // Consultar TODAS las reseñas (incluyendo inactivas para el admin)
+    $sql = "SELECT 
+                ID_Resena as id,
+                nombre,
+                contenido,
+                calificacion,
+                fecha,
+                COALESCE(estado, 'activo') as estado
+            FROM sistema_resenas 
+            ORDER BY fecha DESC";
     
-    if ($idResena <= 0 || empty($contenido)) {
-        throw new Exception('Datos incompletos');
-    }
+    $stmt = $pdo->query($sql);
+    $resenas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    $stmt = $pdo->prepare("
-        INSERT INTO respuestas_admin 
-        (ID_Resena, Contenido_Respuesta, Nombre_Admin, Fecha_Respuesta) 
-        VALUES (?, ?, ?, NOW())
-    ");
-    
-    $resultado = $stmt->execute([$idResena, $contenido, $nombreAdmin]);
-    
-    if ($resultado) {
+    // CRÍTICO: Manejar el caso cuando no hay reseñas
+    if (empty($resenas)) {
         echo json_encode([
             'exito' => true,
-            'mensaje' => 'Respuesta enviada correctamente',
-            'id_respuesta' => $pdo->lastInsertId()
-        ]);
-    } else {
-        throw new Exception('Error al guardar la respuesta');
-    }
-}
-
-function obtenerRespuestas($pdo) {
-    $idResena = isset($_GET['id_resena']) ? intval($_GET['id_resena']) : 0;
-    
-    if ($idResena > 0) {
-        // Obtener respuestas de una reseña específica
-        $stmt = $pdo->prepare("
-            SELECT * FROM respuestas_admin 
-            WHERE ID_Resena = ? 
-            ORDER BY Fecha_Respuesta DESC
-        ");
-        $stmt->execute([$idResena]);
-    } else {
-        // Obtener todas las respuestas
-        $stmt = $pdo->query("
-            SELECT 
-                ra.*,
-                sr.nombre as nombre_resena,
-                sr.contenido as contenido_resena
-            FROM respuestas_admin ra
-            INNER JOIN sistema_resenas sr ON ra.ID_Resena = sr.ID_Resena
-            ORDER BY ra.Fecha_Respuesta DESC
-            LIMIT 50
-        ");
+            'data' => [],
+            'mensaje' => 'No hay reseñas disponibles',
+            'total' => 0
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
     }
     
-    $respuestas = $stmt->fetchAll();
-    
+    // Retornar reseñas encontradas
     echo json_encode([
         'exito' => true,
-        'respuestas' => $respuestas
-    ]);
+        'data' => $resenas,
+        'total' => count($resenas)
+    ], JSON_UNESCAPED_UNICODE);
+    
+} catch (Exception $e) {
+    error_log("Error en admin_respuestas.php: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode([
+        'exito' => false,
+        'data' => [],
+        'mensaje' => 'Error al cargar las reseñas: ' . $e->getMessage()
+    ], JSON_UNESCAPED_UNICODE);
 }
 ?>

@@ -155,16 +155,6 @@
             <i class="bi bi-person-plus me-2"></i>Crear Cuenta
           </button>
         </form>
-
-        <div class="social-login">
-          <h6>O regístrate con</h6>
-          <button class="btn btn-google" id="googleRegister">
-            <i class="bi bi-google me-2"></i>Registrarse con Google
-          </button>
-          <button class="btn btn-facebook" id="facebookRegister">
-            <i class="bi bi-facebook me-2"></i>Registrarse con Facebook
-          </button>
-        </div>
         <p class="text-center mt-3">
           ¿Ya tienes una cuenta? 
           <a href="/brainer/huella-de-carbono-personal/HTML/inicio_de_sesion.html" class="forgot-password">
@@ -275,16 +265,7 @@
         alert('Error de conexión con el servidor: ' + error.message);
       }
     }
-
-    function registerWithGoogle() {
-      alert('Funcionalidad de Google OAuth pendiente de configurar');
-    }
-
-    function registerWithFacebook() {
-      alert('Funcionalidad de Facebook OAuth pendiente de configurar');
-    }
-
-    function toggleTheme() {
+        function toggleTheme() {
       const html = document.documentElement;
       const themeIcon = document.getElementById('theme-icon');
       
@@ -417,16 +398,7 @@
       const registerForm = document.getElementById('registerForm');
       if (registerForm) {
         registerForm.addEventListener('submit', registrarUsuario);
-      }
-      
-      const googleRegisterBtn = document.getElementById('googleRegister');
-      if (googleRegisterBtn) {
-        googleRegisterBtn.addEventListener('click', registerWithGoogle);
-      }
-      
-      const facebookRegisterBtn = document.getElementById('facebookRegister');
-      if (facebookRegisterBtn) {
-        facebookRegisterBtn.addEventListener('click', registerWithFacebook);
+
       }
     });
   </script>
