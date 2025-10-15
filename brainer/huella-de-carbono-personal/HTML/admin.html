@@ -11,34 +11,34 @@
 </head>
 
 <body>
-  <!-- Header de administración -->
-  <header class="admin-header">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <h1><i class="bi bi-shield-check me-2"></i>Panel de Administración</h1>
-          <p class="subtitle mb-0">Latido Verde - Gestión del Sistema</p>
-        </div>
-        <div class="col-md-6 text-end">
-          <div class="d-flex align-items-center justify-content-end gap-3">
-            <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
-              <i class="bi bi-moon-fill" id="theme-icon"></i>
-            </button>
-            <div class="user-info">
-              <div class="user-avatar" id="adminAvatar">AD</div>
-              <div>
-                <div style="font-weight: 600;" id="adminName">Admin</div>
-                <small style="opacity: 0.8;" id="adminRole">Administrador</small>
-              </div>
-              <button class="btn btn-outline-light btn-sm" id="logoutBtn">
-                <i class="bi bi-box-arrow-right me-1"></i>Salir
-              </button>
+  <!-- header: -->
+<header class="admin-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h1><i class="bi bi-shield-check me-2"></i>Panel de Administración</h1>
+        <p class="subtitle mb-0">Latido Verde - Gestión del Sistema</p>
+      </div>
+      <div class="col-md-6 text-end">
+        <div class="d-flex align-items-center justify-content-end gap-3">
+          <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+            <i class="bi bi-moon-fill" id="theme-icon"></i>
+          </button>
+          <div class="user-info">
+            <div class="user-avatar" id="adminAvatar">AD</div>
+            <div>
+              <div style="font-weight: 600;" id="adminName">Admin</div>
+              <small style="opacity: 0.8;" id="adminRole">Administrador</small>
             </div>
+            <button class="btn btn-outline-light btn-sm" id="logoutBtn">
+              <i class="bi bi-box-arrow-right me-1"></i>Salir
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
   <!-- Contenido principal -->
   <div class="container-fluid my-4">
@@ -256,20 +256,40 @@
           </div>
         </div>
 
-        <!-- Reseñas -->
-        <div id="reviews" class="admin-section" style="display: none;">
-          <div class="dashboard-card">
-            <h5><i class="bi bi-chat-dots me-2"></i>Gestión de Reseñas</h5>
-            <div id="reviews-content">
-              <div class="text-center">
-                <div class="spinner-border text-success" role="status">
-                  <span class="visually-hidden">Cargando...</span>
-                </div>
+        <!-- ReseÃ±as -->
+<div id="reviews" class="admin-section" style="display: none;">
+  <div class="dashboard-card">
+    <h5><i class="bi bi-chat-dots me-2"></i>Gestión de Reseñas</h5>
+    <div class="custom-alert alert-info mb-3">
+      <i class="bi bi-info-circle me-2"></i>
+      Aquí puedes editar o eliminar reseñas de usuarios
+    </div>
+    <div class="admin-table">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="reviewsTableBody">
+          <tr>
+            <td colspan="7" class="text-center">
+              <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Cargando...</span>
               </div>
-            </div>
-          </div>
-        </div>
-
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
         <!-- Contactos -->
         <div id="contacts" class="admin-section" style="display: none;">
           <div class="dashboard-card">

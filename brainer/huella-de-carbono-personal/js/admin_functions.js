@@ -229,69 +229,114 @@ async function cargarResenas() {
     }
 }
 
+// ⚠️ FUNCIÓN CORREGIDA - AQUÍ ESTÁ EL CAMBIO
 function mostrarResenas(resenas) {
-    const seccionResenas = document.getElementById('reviews');
+    const tbody = document.getElementById('reviewsTableBody');
     
-    if (seccionResenas && resenas.length > 0) {
-        const tablaHTML = `
-            <div class="dashboard-card">
-                <h5><i class="bi bi-chat-dots me-2"></i>Reseñas de Usuarios</h5>
-                <div class="custom-alert alert-info mb-3">
-                    <i class="bi bi-star-fill me-2"></i>
-                    Total de reseñas: ${resenas.length}
-                </div>
-                <div class="admin-table">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Usuario</th>
-                                <th>Calificación</th>
-                                <th>Comentario</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${resenas.map(resena => `
-                                <tr>
-                                    <td>${resena.id}</td>
-                                    <td>${resena.usuario}</td>
-                                    <td>${'⭐'.repeat(parseInt(resena.calificacion))}</td>
-                                    <td>${resena.comentario.substring(0, 50)}...</td>
-                                    <td>${formatearFecha(resena.fecha)}</td>
-                                    <td>
-                                        <span class="badge ${resena.estado === 'activo' ? 'bg-success' : 'bg-warning'}">
-                                            ${resena.estado}
-                                        </span>
-                                    </td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    if (!tbody) return;
+    
+    // Si no hay reseñas, mostrar mensaje
+    if (!resenas || resenas.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" class="text-center py-5">
+                    <div class="custom-alert alert-info d-inline-block">
+                        <i class="bi bi-info-circle me-2"></i>
+                        No hay reseñas disponibles en este momento
+                    </div>
+                </td>
+            </tr>
         `;
+        return;
+    }
+    
+    // Si hay reseñas, mostrarlas
+    tbody.innerHTML = resenas.map(resena => `
+        <tr>
+            <td>${resena.id}</td>
+            <td>${resena.usuario}</td>
+            <td>${'⭐'.repeat(parseInt(resena.calificacion))}</td>
+            <td>${resena.comentario.substring(0, 50)}...</td>
+            <td>${formatearFecha(resena.fecha)}</td>
+            <td><span class="badge bg-success">${resena.estado}</span></td>
+            <td>
+                <button class="action-btn btn-edit" title="Editar" onclick="editarResena(${resena.id})">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <button class="action-btn btn-delete" title="Eliminar" onclick="eliminarResena(${resena.id})">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+async function editarResena(id) {
+    const nombre = prompt('Nuevo nombre:');
+    if (!nombre) return;
+    
+    const calificacion = prompt('Calificación (1-5):');
+    if (!calificacion) return;
+    
+    const contenido = prompt('Nuevo contenido:');
+    if (!contenido) return;
+
+    const formData = new FormData();
+    formData.append('accion', 'editar');
+    formData.append('id_resena', id);
+    formData.append('nombre', nombre);
+    formData.append('calificacion', calificacion);
+    formData.append('contenido', contenido);
+    formData.append('estado', 'activo');
+
+    try {
+        const response = await fetch('/brainer/huella-de-carbono-personal/php/admin_acciones_resenas.php', {
+            method: 'POST',
+            body: formData
+        });
         
-        seccionResenas.innerHTML = tablaHTML;
-    } else if (seccionResenas) {
-        seccionResenas.innerHTML = `
-            <div class="dashboard-card">
-                <h5><i class="bi bi-chat-dots me-2"></i>Reseñas de Usuarios</h5>
-                <div class="custom-alert alert-info">
-                    <i class="bi bi-info-circle me-2"></i>
-                    No hay reseñas aún.
-                </div>
-            </div>
-        `;
+        const data = await response.json();
+        if (data.exito) {
+            mostrarExito('Reseña actualizada');
+            cargarResenas();
+        } else {
+            mostrarError(data.mensaje);
+        }
+    } catch (error) {
+        mostrarError('Error: ' + error.message);
     }
 }
 
-// 🧮 FUNCIONES PARA CÁLCULOS
+async function eliminarResena(id) {
+    if (!confirm('¿Eliminar esta reseña?')) return;
+
+    const formData = new FormData();
+    formData.append('accion', 'eliminar');
+    formData.append('id_resena', id);
+
+    try {
+        const response = await fetch('/brainer/huella-de-carbono-personal/php/admin_acciones_resenas.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        if (data.exito) {
+            mostrarExito('Reseña eliminada');
+            cargarResenas();
+        } else {
+            mostrarError(data.mensaje);
+        }
+    } catch (error) {
+        mostrarError('Error: ' + error.message);
+    }
+}
+
+// 🔢 FUNCIONES PARA CÁLCULOS
 async function cargarCalculos() {
     try {
-        console.log('🧮 Cargando cálculos...');
-        
+        console.log('🔢 Cargando cálculos...');
+
         const respuesta = await fetch(`${API_URL}?accion=calculos`);
         const datos = await respuesta.json();
         
@@ -356,7 +401,7 @@ function mostrarCalculos(calculos) {
     }
 }
 
-// 🔄 MEJORAR LA FUNCIÓN showSection
+// 🔀 MEJORAR LA FUNCIÓN showSection
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.admin-section');
     sections.forEach(section => {
@@ -392,7 +437,7 @@ function showSection(sectionId) {
     }
 }
 
-// 🛠 FUNCIONES DE UTILIDAD
+// 🛠️ FUNCIONES DE UTILIDAD
 function formatearFecha(fecha) {
     if (!fecha) return 'Sin fecha';
     
@@ -416,25 +461,155 @@ function mostrarExito(mensaje) {
     alert('Éxito: ' + mensaje);
 }
 
-// Funciones de acción para botones
+// ============================================
+// 👥 FUNCIONES PARA USUARIOS (ACTUALIZADAS)
+// ============================================
+
+async function cargarUsuarios() {
+    try {
+        console.log('👥 Cargando usuarios...');
+        
+        const respuesta = await fetch(`${API_URL}?accion=usuarios`);
+        const datos = await respuesta.json();
+        
+        if (datos.exito) {
+            actualizarTablaUsuarios(datos.usuarios);
+            console.log('✅ Usuarios cargados:', datos.usuarios.length);
+        }
+    } catch (error) {
+        console.error('❌ Error cargando usuarios:', error);
+    }
+}
+
+function actualizarTablaUsuarios(usuarios) {
+    const tabla = document.getElementById('usersTableBody');
+    
+    if (tabla) {
+        tabla.innerHTML = '';
+        
+        usuarios.forEach(usuario => {
+            const fila = `
+                <tr>
+                    <td>${String(usuario.id).padStart(3, '0')}</td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.email}</td>
+                    <td>${formatearFecha(usuario.fecha)}</td>
+                    <td><span class="badge bg-success">${usuario.estado}</span></td>
+                    <td>
+                        <button class="action-btn btn-view" title="Ver" onclick="verUsuario(${usuario.id})">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="action-btn btn-edit" title="Editar" onclick="editarUsuario(${usuario.id})">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="action-btn btn-delete" title="Eliminar" onclick="eliminarUsuario(${usuario.id})">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tabla.innerHTML += fila;
+        });
+    }
+}
+
 function verUsuario(id) {
-    alert('Ver detalles del usuario ID: ' + id);
+    alert('👁️ Ver detalles del usuario ID: ' + id + '\n\n(Funcionalidad de vista detallada pendiente)');
 }
 
-function editarUsuario(id) {
-    alert('Editar usuario ID: ' + id);
+async function editarUsuario(id) {
+    const nombre = prompt('✏️ Nuevo nombre del usuario:');
+    if (!nombre) return;
+    
+    const correo = prompt('📧 Nuevo correo electrónico:');
+    if (!correo) return;
+    
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(correo)) {
+        alert('❌ El correo electrónico no es válido');
+        return;
+    }
+    
+    const edad = prompt('🎂 Nueva edad (13-120):');
+    if (!edad) return;
+    
+    const edadNum = parseInt(edad);
+    if (isNaN(edadNum) || edadNum < 13 || edadNum > 120) {
+        alert('❌ La edad debe ser un número entre 13 y 120');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('accion', 'editar');
+    formData.append('id_usuario', id);
+    formData.append('nombre', nombre);
+    formData.append('correo', correo);
+    formData.append('edad', edadNum);
+
+    try {
+        const response = await fetch('/brainer/huella-de-carbono-personal/php/admin_acciones_usuarios.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        if (data.exito) {
+            mostrarExito('✅ Usuario actualizado correctamente');
+            cargarUsuarios();
+        } else {
+            mostrarError(data.mensaje);
+        }
+    } catch (error) {
+        mostrarError('❌ Error: ' + error.message);
+    }
 }
 
-function eliminarUsuario(id) {
-    if (confirm('¿Estás seguro de eliminar este usuario?')) {
-        alert('Usuario eliminado (funcionalidad pendiente)');
+async function eliminarUsuario(id) {
+    // Confirmación con advertencia clara
+    const confirmacion = confirm(
+        '⚠️ ¿ESTÁS SEGURO DE ELIMINAR ESTE USUARIO?\n\n' +
+        '⚡ Esta acción eliminará:\n' +
+        '   • El usuario de la base de datos\n' +
+        '   • Todas sus evaluaciones de huella de carbono\n' +
+        '   • Todos sus datos relacionados\n\n' +
+        '🚨 ESTA ACCIÓN NO SE PUEDE DESHACER\n\n' +
+        '¿Deseas continuar?'
+    );
+    
+    if (!confirmacion) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('accion', 'eliminar');
+    formData.append('id_usuario', id);
+
+    try {
+        const response = await fetch('/brainer/huella-de-carbono-personal/php/admin_acciones_usuarios.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.exito) {
+            const mensaje = '✅ Usuario eliminado exitosamente\n\n' +
+                          '📊 Registros eliminados:\n' +
+                          '   • 1 usuario\n' +
+                          '   • ' + (data.registros_relacionados_eliminados || 0) + ' evaluaciones de huella';
+            
+            mostrarExito(mensaje);
+            cargarUsuarios();
+        } else {
+            mostrarError(data.mensaje);
+        }
+    } catch (error) {
+        mostrarError('❌ Error: ' + error.message);
     }
 }
 
 // Hacer disponibles las funciones globalmente
-window.showSection = showSection;
-window.cargarDashboard = cargarDashboard;
-window.verContactoCompleto = verContactoCompleto;
 window.verUsuario = verUsuario;
 window.editarUsuario = editarUsuario;
 window.eliminarUsuario = eliminarUsuario;

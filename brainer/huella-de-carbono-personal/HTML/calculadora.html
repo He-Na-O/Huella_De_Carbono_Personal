@@ -204,6 +204,138 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // ============================================
+// SISTEMA DE GESTIÓN DE SESIÓN
+// Agregar este código al final del <script> en calculadora.html
+// ============================================
+
+// Variable global para almacenar datos de sesión
+let usuarioActivo = null;
+
+// Verificar sesión al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+  verificarSesion();
+  actualizarInterfazSesion();
+});
+
+// Función para verificar si hay sesión activa
+function verificarSesion() {
+  // Aquí deberías hacer una petición a tu backend PHP para verificar la sesión
+  // Por ahora, simularemos con datos en memoria
+  // Puedes usar sessionStorage o hacer fetch a tu PHP
+  
+  const sesionGuardada = sessionStorage.getItem('usuario');
+  if (sesionGuardada) {
+    usuarioActivo = JSON.parse(sesionGuardada);
+  }
+}
+
+// Función para actualizar la interfaz según el estado de sesión
+function actualizarInterfazSesion() {
+  const headerControls = document.querySelector('.header-controls');
+  
+  if (usuarioActivo) {
+    // Usuario con sesión activa
+    headerControls.innerHTML = `
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container"></div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+
+      <!-- Menú de usuario con sesión activa -->
+      <div class="dropdown">
+        <button class="btn btn-success btn-sm px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle me-1"></i>${usuarioActivo.nombre || usuarioActivo.email}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/perfil.html">
+              <i class="bi bi-person me-2"></i>Mi Perfil
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/historial.html">
+              <i class="bi bi-clock-history me-2"></i>Historial de Cálculos
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item text-danger" href="#" onclick="cerrarSesion(); return false;">
+              <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+            </a>
+          </li>
+        </ul>
+      </div>
+    `;
+  } else {
+    // Usuario sin sesión
+    headerControls.innerHTML = `
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-container"></div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">
+          <i class="bi bi-moon-fill" id="theme-icon"></i>
+        </button>
+      </div>
+
+      <!-- Menú desplegable para Login/Registro -->
+      <div class="dropdown">
+        <button class="btn btn-light btn-sm px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión / Registro
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/inicio_de_sesion.html">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item" href="/brainer/huella-de-carbono-personal/HTML/registro.html">
+              <i class="bi bi-person-plus me-2"></i>Crear Cuenta
+            </a>
+          </li>
+        </ul>
+      </div>
+    `;
+  }
+  
+  // Restaurar el tema guardado después de actualizar
+  const savedTheme = localStorage.getItem('theme');
+  const themeIcon = document.getElementById('theme-icon');
+  if (savedTheme === 'dark' && themeIcon) {
+    document.body.setAttribute('data-theme', 'dark');
+    themeIcon.className = 'bi bi-sun-fill';
+  }
+}
+
+// Función para iniciar sesión (llamar desde inicio_de_sesion.html)
+function iniciarSesion(datosUsuario) {
+  usuarioActivo = datosUsuario;
+  sessionStorage.setItem('usuario', JSON.stringify(datosUsuario));
+  actualizarInterfazSesion();
+}
+
+// Función para cerrar sesión
+function cerrarSesion() {
+  if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+    usuarioActivo = null;
+    sessionStorage.removeItem('usuario');
+    
+    // Mostrar notificación
+    const notification = document.createElement('div');
+    notification.className = 'alert alert-info position-fixed top-0 start-50 translate-middle-x mt-3';
+    notification.style.zIndex = '9999';
+    notification.innerHTML = '<i class="bi bi-check-circle me-2"></i>Sesión cerrada correctamente';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+      actualizarInterfazSesion();
+    }, 2000);
+  }
+}
     // Función para alternar tema
     function toggleTheme() {
       const body = document.body;

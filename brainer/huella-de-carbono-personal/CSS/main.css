@@ -40,7 +40,7 @@ body {
   background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
 }
 
-/* Barra de redes sociales */
+/* Barra de redes sociales mejorada */
 .social-bar {
   position: fixed;
   left: 0;
@@ -228,219 +228,111 @@ nav a:hover, nav a.active {
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* Contenedor del formulario */
-.login-container {
-  max-width: 450px;
-  margin: 60px auto;
+/* Carrusel mejorado */
+.carousel-container {
+  margin: 40px 0;
+  position: relative;
+}
+
+.carousel-item img {
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover img {
+  transform: scale(1.02);
+}
+
+.carousel-caption {
   background: var(--glass-bg);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid var(--glass-border);
+  bottom: 20px;
+}
+
+.carousel-caption h5 {
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 10px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 60px;
+  height: 60px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+  left: -80px;
+}
+
+.carousel-control-next {
+  right: -80px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: var(--primary-green);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Indicadores del carrusel */
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 2px solid var(--primary-green);
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background: var(--primary-green);
+  transform: scale(1.2);
+}
+
+/* Sección de contacto mejorada */
+.contacto {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 40px;
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 30px;
   box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
 }
 
-.login-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-green), var(--secondary-green));
-  border-radius: 20px 20px 0 0;
-}
-
-.login-container h2 {
-  text-align: center;
-  color: var(--text-dark);
-  margin-bottom: 30px;
+.contacto h3 {
+  color: var(--primary-green);
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.login-container h2 i {
-  color: var(--primary-green);
-  margin-right: 10px;
-}
-
-/* Inputs mejorados */
-.form-control {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-dark);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
   margin-bottom: 20px;
-  padding: 12px 15px;
-  border-radius: 15px;
-}
-
-.form-control::placeholder {
-  color: rgba(0, 77, 51, 0.5);
-}
-
-[data-theme="dark"] .form-control::placeholder {
-  color: rgba(232, 245, 232, 0.5);
-}
-
-.form-control:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 102, 68, 0.3);
-  background: rgba(255, 255, 255, 0.2);
-  border-color: var(--primary-green);
-}
-
-.form-label {
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 8px;
-}
-
-/* Botón principal */
-.btn-green {
-  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-  border: none;
-  color: white;
-  width: 100%;
-  padding: 12px;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 102, 68, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-green::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-green:hover::before {
-  left: 100%;
-}
-
-.btn-green:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 102, 68, 0.4);
-}
-
-/* Toggle de contraseña */
-.password-toggle {
-  position: relative;
-}
-
-.password-toggle i {
-  position: absolute;
-  right: 15px;
-  top: 40px;
-  cursor: pointer;
-  color: var(--primary-green);
-  transition: all 0.3s ease;
-}
-
-.password-toggle i:hover {
-  transform: scale(1.1);
-}
-
-/* Checkbox personalizado */
-.form-check-input {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(10px);
-}
-
-.form-check-input:checked {
-  background-color: var(--primary-green);
-  border-color: var(--primary-green);
-}
-
-.form-check-label {
-  color: var(--text-dark);
-  font-weight: 500;
-}
-
-/* Botones sociales */
-.social-login {
-  margin-top: 30px;
-}
-
-.social-login h6 {
   text-align: center;
-  color: var(--text-dark);
-  margin-bottom: 20px;
-  position: relative;
 }
 
-.social-login h6::before,
-.social-login h6::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 30%;
-  height: 1px;
-  background: var(--glass-border);
-}
-
-.social-login h6::before {
-  left: 0;
-}
-
-.social-login h6::after {
-  right: 0;
-}
-
-.social-login button {
-  width: 100%;
-  margin-bottom: 10px;
-  border-radius: 25px;
-  padding: 12px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(10px);
-}
-
-.social-login button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.btn-google {
+.contact-item {
   background: var(--glass-bg);
-  color: var(--text-dark);
-}
-
-.btn-facebook {
-  background: #1877f2;
-  color: white;
-}
-
-.btn-apple {
-  background: #000;
-  color: white;
-}
-
-/* Links */
-.forgot-password {
-  color: var(--primary-green);
-  text-decoration: none;
-  font-weight: 500;
+  border: 1px solid var(--glass-border);
+  border-radius: 1500px;
+  padding: 20px;
+  text-align: center;
   transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.forgot-password:hover {
-  color: var(--secondary-green);
-  text-decoration: underline;
+.contact-item:hover {
+  transform: translateY(-50px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* Footer mejorado */
@@ -450,7 +342,6 @@ footer {
   padding: 30px 0;
   border-top: 3px solid var(--primary-green);
   box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
-  margin-top: 40px;
 }
 
 footer hr {
@@ -472,6 +363,34 @@ footer hr {
 
 .fade-in-up {
   animation: fadeInUp 0.8s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-bar {
+    display: none;
+  }
+  
+  .header-controls {
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: 300px;
+  }
 }
 
 /* Efectos de partículas de fondo */
@@ -501,28 +420,5 @@ footer hr {
   }
   50% {
     transform: translateY(-20px);
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .social-bar {
-    display: none;
-  }
-  
-  .header-controls {
-    flex-direction: row;
-    gap: 15px;
-  }
-  
-  nav a {
-    margin: 0 10px;
-    padding: 8px 15px;
-    font-size: 14px;
-  }
-  
-  .login-container {
-    margin: 30px 20px;
-    padding: 30px 20px;
   }
 }
